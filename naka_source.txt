@@ -1,0 +1,835 @@
+models/dims/bd_gl_code_dn1.sql:64:left outer join {{ source('global','infact_ref_data_lookup_tg1') }} b  on b.source_system_cde        = 'ACC'
+models/dims/bd_gl_code_dn1.sql:69:left outer join {{ source('global','infact_ref_data_desc_tg1') }}   c1 on c1.TARGET_ATTRIBUTE_NME    = b.TARGET_ATTRIBUTE_NME
+models/dims/bd_gl_code_dn1.sql:72:left outer join {{ source('global','infact_ref_data_desc_tg1') }}   c2 on c2.TARGET_ATTRIBUTE_NME    = b.SOURCE_ATTRIBUTE_2_NME
+models/dims/bd_gl_code_dn1.sql:75:left outer join {{ source('global','infact_ref_data_desc_tg1') }}   c3 on c3.TARGET_ATTRIBUTE_NME    = b.SOURCE_ATTRIBUTE_3_NME
+models/dims/cd_claim_rehab_action_td1.sql:102:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/dims/cd_claim_rehab_action_td1.sql:104:JOIN {{ source('timeseries_eos_finapp','toccasetype') }} TOCCASETYPE ON ( (( TOCCASETYPE.C = TOCCASE.C_OCCASTYP_CASES )) AND (( TOCCASETYPE.I = TOCCASE.I_OCCASTYP_CASES )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOCCASETYPE.META__RECORD_EFFECTIVE_FROM AND TOCCASETYPE.META__RECORD_EFFECTIVE_TO )) )
+models/dims/cd_claim_rehab_action_td1.sql:105:JOIN {{ source('timeseries_eos_finapp','tolbenefit') }} TOLBENEFIT ON ( (( TOLBENEFIT.I_OCCASE_BENEFITCASE = TOCCASE.I )) AND (( TOLBENEFIT.C_OCCASE_BENEFITCASE = TOCCASE.C )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLBENEFIT.META__RECORD_EFFECTIVE_FROM AND TOLBENEFIT.META__RECORD_EFFECTIVE_TO )) )
+models/dims/cd_claim_rehab_action_td1.sql:106:JOIN {{ source('timeseries_eos_finapp','tolservicesholder') }} TOLSERVICESHOLDER ON ( (( TOLSERVICESHOLDER.C_BNFT_SERVICELINK = TOLBENEFIT.C )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLSERVICESHOLDER.META__RECORD_EFFECTIVE_FROM AND TOLSERVICESHOLDER.META__RECORD_EFFECTIVE_TO )) AND (( TOLSERVICESHOLDER.I_BNFT_SERVICELINK = TOLBENEFIT.I )) 
+models/dims/cd_contract_td1.sql:211:						FROM {{ source('timeseries_mfp', 'contract') }} CONTRACT
+models/dims/cd_contract_td1.sql:224:						FROM {{ source('timeseries_mfp', 'contract_type') }} CONTRACT_TYPE
+models/dims/cd_contract_td1.sql:237:						FROM {{ source('timeseries_mfp', 'contract_class_type') }} CONTRACT_CLASS_TYPE
+models/dims/cd_contract_td1.sql:250:						FROM {{ source('timeseries_mfp', 'contract_status_type') }} CONTRACT_STATUS_TYPE
+models/dims/cd_contract_td1.sql:263:						FROM {{ source('timeseries_mfp', 'admin_level_type') }} ADMIN_LEVEL_TYPE
+models/dims/cd_entitlement_type_td1.sql:192:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/cd_entitlement_type_td1.sql:206:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/dims/cd_entitlement_type_td1.sql:214:{{ source('timeseries_eos_finapp','toccasetype') }} TOCCASETYPE
+models/dims/cd_entitlement_type_td1.sql:228:{{ source('timeseries_eos_finapp','tolpaymentline') }} TOLPAYMENTLINE
+models/dims/cd_entitlement_type_td1.sql:280:{{ source('timeseries_pathway','entitlement_type') }} ENTITLEMENT_TYPE
+models/dims/cd_entitlement_type_td1.sql:281:JOIN {{ source('timeseries_pathway','entitlement_category') }} ENTITLEMENT_CATEGORY ON ( (( ENTITLEMENT_TYPE.ENTITLEMENT_CATEGORY_CODE = ENTITLEMENT_CATEGORY.ENTITLEMENT_CATEGORY_CODE )) AND (( ENTITLEMENT_TYPE.ENTITLEMENT_CATEGORY_TYPE_CODE = ENTITLEMENT_CATEGORY.ENTITLEMENT_CATEGORY_TYPE_CODE )) )
+models/dims/cd_entitlement_type_td1.sql:291:{{ source('timeseries_misc','pwy_eos_entitlement_map') }} PWY_EOS_ENTITLEMENT_MAP
+models/dims/cd_entitlement_type_td1.sql:328:{{ source('timeseries_mfp','master_item') }} MASTER_ITEM
+models/dims/cd_entitlement_type_td1.sql:344:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/cd_facility_td1.sql:133:{{ source('timeseries_mfp','facility') }} FACILITY
+models/dims/cd_facility_td1.sql:134:JOIN {{ source('timeseries_mfp','facility_type') }} FACILITY_TYPE ON ( ( FACILITY.FACILITY_TYPE_CODE = FACILITY_TYPE.FACILITY_TYPE_CODE ) )
+models/dims/cd_facility_td1.sql:135:JOIN {{ source('timeseries_mfp','facility_status_type') }} FACILITY_STATUS_TYPE ON ( ( FACILITY_STATUS_TYPE.FACILITY_STATUS_TYPE_CODE = FACILITY.FACILITY_STATUS_TYPE_CODE ) )
+models/dims/cd_facility_td1.sql:155:{{ source('timeseries_mfp','facility_name') }} FACILITY_NAME
+models/dims/cd_facility_td1.sql:182:{{ source('timeseries_mfp','facility_name') }} FACILITY_NAME
+models/dims/cd_party_claim_vendor_td1.sql:2396:{{ source('timeseries_mfp','vendor') }} VENDOR
+models/dims/cd_party_claim_vendor_td1.sql:2408:{{ source('timeseries_mfp','vendor_status_type') }} VENDOR_STATUS_TYPE
+models/dims/cd_party_claim_vendor_td1.sql:2420:{{ source('timeseries_mfp','vendor_reason_type') }} VENDOR_REASON_TYPE
+models/dims/cd_party_claim_vendor_td1.sql:2432:{{ source('timeseries_mfp','agency_type') }} AGENCY_TYPE
+models/dims/cd_party_claim_vendor_td1.sql:2444:{{ source('timeseries_mfp','tax_structure_type') }} TAX_STRUCTURE_TYPE
+models/dims/cd_party_claim_vendor_td1.sql:2456:{{ source('timeseries_mfp','pms_type') }} PMS_TYPE
+models/dims/cd_party_claim_vendor_td1.sql:2470:{{ source('timeseries_mfp','vendor') }} VENDOR
+models/dims/cd_party_client_td1.sql:1198:    {{ source('timeseries_eos_finapp','taccdatamap') }} TACCDATAMAP
+models/dims/cd_party_client_td1.sql:1200:    JOIN {{ source('timeseries_aes','person') }} PERSON ON ( ( PERSON.ETHNICITY_CODE = TACCDATAMAP.SOURCEVALUENUM ) )
+models/dims/cd_party_client_td1.sql:1271:    RIGHT OUTER JOIN {{ source('timeseries_aes','person_alias') }} PERSON_ALIAS 
+models/dims/cd_party_levy_payer_td1.sql:619:JOIN {{ source('timeseries_ips2','levy_client') }} LEVY_CLIENT ON ( ( (to_timestamp(CD_DATE_TD1.DAY_DTE + 1) - interval '0.000001'second ) >= LEVY_CLIENT.META__RECORD_EFFECTIVE_FROM and (to_timestamp(CD_DATE_TD1.DAY_DTE + 1) - interval '0.000001'second ) < LEVY_CLIENT.META__RECORD_EFFECTIVE_TO ) )
+models/dims/cd_party_levy_payer_td1.sql:627:{{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION ) INGRP4 ON ( ( ( IFNULL(NVL(LEVY_CLIENT.ACC_IDENTIFIER,'') || LEVY_CLIENT.ACC_SUFFIX = INGRP4.C_CUSTOMERNO and to_char ( LEVY_CLIENT.LEVY_CLIENT_OID ) = INGRP4.C_EXTEXTERNALENTITYID and 'Y' = INGRP4.C_ADM_LATEST_IND ) ) )
+models/dims/cd_party_levy_payer_td1.sql:636:{{ source('timeseries_ips2','levy_client_role_type') }} LEVY_CLIENT_ROLE_TYPE ) INGRP2 ON ( (( INGRP1.A_LEVY_CLIENT_ROLE_CODE = INGRP2.B_LEVY_CLIENT_ROLE_CODE )) AND (( INGRP1.I_DAY_DTE < INGRP2.B_ADM_TO_DTS )) AND (( INGRP1.I_DAY_DTE >= INGRP2.B_ADM_FROM_DTS )) )
+models/dims/cd_party_levy_payer_td1.sql:650:{{ source('timeseries_eos_finapp','tocpartytopartyrelations') }} TOCPARTYTOPARTYRELATIONS
+models/dims/cd_party_levy_payer_td1.sql:651:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1 ON ( ( to_char ( TOCPARTYTOPARTYRELATIONS.RELATIONSHIP ) = INFACT_REF_DATA_LOOKUP_TG1.SOURCE_ATTRIBUTE_2_VALUE ) )
+models/dims/cd_party_levy_payer_td1.sql:652:JOIN {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION ON ( ( ( TOCPARTYTOPARTYRELATIONS.C_OCPRTY_RELATEDPRTYBA = TOCORGANISATION.C and TOCPARTYTOPARTYRELATIONS.I_OCPRTY_RELATEDPRTYBA = TOCORGANISATION.I ) ) )
+models/dims/cd_party_levy_payer_td1.sql:674:{{ source('timeseries_orafin','hz_parties') }} HZ_PARTIES ) INGRP5 ON ( (( INGRP1.I_END_OF_RUN_DAY_DTS >= INGRP5.E_ADM_FROM_DTS )) AND (( INGRP1.A_ACC_IDENTIFIER = INGRP5.E_PARTY_NUMBER )) AND (( INGRP1.I_END_OF_RUN_DAY_DTS < INGRP5.E_ADM_TO_DTS )) )
+models/dims/cd_party_levy_payer_td1.sql:697:{{ source('timeseries_ips2','comment') }} COMMENT
+models/dims/cd_party_levy_payer_td1.sql:722:JOIN {{ source('timeseries_ips2','lc_grouping_participatio') }} LC_GROUPING_PARTICIPATIO ON ( (( CD_DATE_TD1_1.DAY_DTE >= (greatest(LC_GROUPING_PARTICIPATIO.START_DATE, trunc(LC_GROUPING_PARTICIPATIO.META__RECORD_EFFECTIVE_FROM)) ) )) AND (( CD_DATE_TD1_1.DAY_DTE <= (LC_GROUPING_PARTICIPATIO.END_DATE ) )) )
+models/dims/cd_party_levy_payer_td1.sql:723:JOIN {{ source('timeseries_ips2','levy_client_grouping') }} LEVY_CLIENT_GROUPING ON ( (( LC_GROUPING_PARTICIPATIO.LEVY_CLIENT_GROUPING_OID = LEVY_CLIENT_GROUPING.LEVY_CLIENT_GROUPING_OID )) AND (( (to_timestamp(CD_DATE_TD1_1.DAY_DTE + 1) - INTERVAL '000001 MICROSECOND' ) >= LEVY_CLIENT_GROUPING.META__RECORD_EFFECTIVE_FROM )) AND (( (to_timestamp(CD_DATE_TD1_1.DAY_DTE + 1) - INTERVAL '000001 MICROSECOND' ) < LEVY_CLIENT_GROUPING.META__RECORD_EFFECTIVE_TO )) )
+models/dims/cd_party_levy_payer_td1.sql:724:JOIN {{ source('timeseries_ips2','levy_client') }} LEVY_CLIENT_1 ON ( ( LEVY_CLIENT_1.LEVY_CLIENT_OID = LEVY_CLIENT_GROUPING.LEVY_CLIENT_OID ) )
+models/dims/cd_party_levy_payer_td1.sql:736:{{ source('timeseries_ips2','lc_grouping_participatio') }} LC_GROUPING_PARTICIPATIO_1
+models/dims/cd_party_levy_payer_td1.sql:751:{{ source('timeseries_eos_finapp','tocpartytopartyrelations') }} TOCPARTYTOPARTYRELATIONS
+models/dims/cd_party_levy_payer_td1.sql:752:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1 ON ( ( to_char ( TOCPARTYTOPARTYRELATIONS.RELATIONSHIP ) = INFACT_REF_DATA_LOOKUP_TG1.SOURCE_ATTRIBUTE_2_VALUE ) )
+models/dims/cd_party_levy_payer_td1.sql:768:{{ source('timeseries_orafin','hz_cust_accounts') }} HZ_CUST_ACCOUNTS
+models/dims/cd_party_provider_td1.sql:454:        {{ source('timeseries_mfp','provider') }} PROVIDER
+models/dims/cd_party_provider_td1.sql:469:        {{ source('timeseries_mfp','provider_status_type') }} PROVIDER_STATUS_TYPE
+models/dims/cd_party_provider_td1.sql:484:        {{ source('timeseries_mfp','provider_reason_type') }} PROVIDER_REASON_TYPE
+models/dims/cd_party_provider_td1.sql:505:        {{ source('timeseries_mfp','provider_billing_method') }} PROVIDER_BILLING_METHOD
+models/dims/cd_party_provider_td1.sql:519:        {{ source('timeseries_mfp','billing_method_type') }} BILLING_METHOD_TYPE
+models/dims/cd_party_provider_td1.sql:659:    JOIN {{ source('timeseries_mfp','provider_voc_class') }} PROVIDER_VOC_CLASS 
+models/dims/cd_party_provider_td1.sql:684:                    {{ source('timeseries_mfp','vocational_class') }} VOCATIONAL_CLASS
+models/dims/cd_party_provider_td1.sql:701:                    {{ source('timeseries_mfp','prof_reg_body_type') }} PROF_REG_BODY_TYPE
+models/dims/cd_party_provider_td1.sql:718:                    {{ source('timeseries_mfp','specialty_type') }} SPECIALTY_TYPE
+models/dims/cd_party_provider_td1.sql:735:                    {{ source('timeseries_mfp','sub_specialty_type') }} SUB_SPECIALTY_TYPE
+models/dims/cd_party_provider_td1.sql:779:        {{ source('timeseries_mfp','provider') }} MASTER_PROVIDER
+models/dims/cd_party_td1.sql:161:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/cd_party_td1.sql:165:RIGHT OUTER JOIN {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON ON ( ( INGRP2.B_I = TOCPERSON.TITLE ) )
+models/dims/cd_party_td1.sql:183:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_2
+models/dims/cd_party_td1.sql:187:RIGHT OUTER JOIN {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION ON ( ( INGRP2.B_I = TOCORGANISATION.BUSINESSTYPE ) )
+models/dims/cd_party_td1.sql:190:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( INGRP2.B_PARTYTYPE = TODOMAININSTANCE_1.I ) )
+models/dims/cd_service_item_td1.sql:284:{{ source('timeseries_eos_finapp','todomain') }} TODOMAIN_ENT
+models/dims/cd_service_item_td1.sql:285:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_ENT 
+models/dims/cd_service_item_td1.sql:288:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} REF_DATA_LOOKUP_ENT_TYPE 
+models/dims/cd_service_item_td1.sql:290:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} REF_DATA_LOOKUP_GST 
+models/dims/cd_service_item_td1.sql:292:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} REF_DATA_LOOKUP_SI 
+models/dims/cd_service_item_td1.sql:294:JOIN {{ source('timeseries_eos_finapp','tolservicedefinition') }} TOLSERVICEDEFINITION 
+models/dims/cd_service_item_td1.sql:300:{{ source('timeseries_eos_finapp','todomain') }} TODOMAIN_STATUS
+models/dims/cd_service_item_td1.sql:301:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_STATUS ON ( (( TODOMAININSTANCE_STATUS.META__RECORD_EFFECTIVE_FROM BETWEEN TODOMAIN_STATUS.META__RECORD_EFFECTIVE_FROM AND TODOMAIN_STATUS.META__RECORD_EFFECTIVE_TO )) AND (( TODOMAIN_STATUS.C = TODOMAININSTANCE_STATUS.C_ODOM_INSTS )) AND (( TODOMAIN_STATUS.I = TODOMAININSTANCE_STATUS.I_ODOM_INSTS )) )
+models/dims/cd_service_item_td1.sql:305:JOIN {{ source('timeseries_eos_finsec','tosuser') }} TOSUSER 
+models/dims/cd_service_item_td1.sql:308:LEFT OUTER JOIN {{ source('timeseries_misc','contract_service_hrchy') }} CONTRACT_SERVICE_HRCHY_TS1 ON ( ( CONTRACT_SERVICE_HRCHY_TS1.SERVICE_ITEM_CDE = TOLSERVICEDEFINITION.CODEID ) )
+models/dims/cd_service_item_td1.sql:1181:                FROM {{ source('presentation','cd_date_td1') }} CD_DATE_TD1
+models/dims/cd_service_item_td1.sql:1182:                JOIN {{ source('timeseries_mfp','contract') }} CONTRACT 
+models/dims/cd_service_item_td1.sql:1185:                JOIN {{ source('timeseries_mfp','contract_item') }} CONTRACT_ITEM 
+models/dims/cd_service_item_td1.sql:1189:                JOIN {{ source('timeseries_mfp','master_item') }} MASTER_ITEM 
+models/dims/cd_service_item_td1.sql:1208:                {{ source('presentation','cd_date_td1') }} CD_DATE_TD1
+models/dims/cd_service_item_td1.sql:1209:                JOIN {{ source('timeseries_mfp','master_item') }} MASTER_ITEM 
+models/dims/cd_service_item_td1.sql:1222:                {{ source('presentation','cd_date_td1') }} CD_DATE_TD1
+models/dims/cd_service_item_td1.sql:1223:                JOIN {{ source('timeseries_misc','contract_service_hrchy') }} CONTRACT_SERVICE_HRCHY_TS1_1 ON ( 1=1 )
+models/dims/cd_service_item_td1.sql:1262:        {{ source('presentation','cd_date_td1') }} CD_DATE_TD1
+models/dims/cd_service_item_td1.sql:1263:        JOIN {{ source('timeseries_mfp','master_item') }} MASTER_ITEM 
+models/dims/cd_service_item_td1.sql:1272:                            {{ source('timeseries_mfp','billing_method_type') }} BILLING_METHOD_TYPE
+models/dims/cd_service_item_td1.sql:1285:                                {{ source('timeseries_mfp','billing_method_type') }} BILLING_METHOD_TYPE
+models/dims/cd_service_item_td1.sql:1329:                            {{ source('timeseries_mfp','service_type_group') }} SERVICE_TYPE_GROUP
+models/dims/cd_service_item_td1.sql:1343:                            {{ source('timeseries_mfp','sub_service_type_1') }} SUB_SERVICE_TYPE_1
+models/dims/cd_service_item_td1.sql:1357:                            {{ source('timeseries_mfp','sub_service_type_2') }} SUB_SERVICE_TYPE_2
+models/dims/cd_service_item_td1.sql:1371:                            {{ source('timeseries_mfp','sub_service_type_3') }} SUB_SERVICE_TYPE_3
+models/dims/cd_service_item_td1.sql:1383:                            {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_3
+models/dims/cd_service_item_td1.sql:1417:                                {{ source('timeseries_mfp','treatment_limit') }} TREATMENT_LIMIT
+models/dims/cd_service_item_td1.sql:1435:                    {{ source('timeseries_mfp','contract_class_type') }} CONTRACT_CLASS_TYPE
+models/dims/cd_service_item_td1.sql:1448:                    {{ source('timeseries_misc','contract_service_hrchy') }} CONTRACT_SERVICE_HRCHY_TS1_2
+models/dims/cd_service_item_td1.sql:1462:                    {{ source('timeseries_misc','contract_service_hrchy') }} CONTRACT_SERVICE_HRCHY_TS1_3
+models/dims/cla_actvty_change_reason_td1.sql:125:										FROM {{ source('timeseries_eos_finapp', 'toctargetdateactivitycha') }} TOCTARGETDATEACTIVITYCHA
+models/dims/cla_actvty_change_reason_td1.sql:142:										FROM {{ source('timeseries_eos_finapp', 'toconholdactivitychange') }} TOCONHOLDACTIVITYCHANGE
+models/dims/cla_actvty_change_reason_td1.sql:159:										FROM {{ source('timeseries_eos_finapp', 'toccloseactivitychange') }} TOCCLOSEACTIVITYCHANGE
+models/dims/cla_actvty_change_reason_td1.sql:176:										FROM {{ source('timeseries_eos_finapp', 'toccancelactivitychange') }} TOCCANCELACTIVITYCHANGE
+models/dims/cla_actvty_change_reason_td1.sql:193:										FROM {{ source('timeseries_eos_finapp', 'tocmanoffholdactivitycha') }} TOCMANOFFHOLDACTIVITYCHA
+models/dims/cla_actvty_change_reason_td1.sql:210:										FROM {{ source('timeseries_eos_finapp', 'toctransferactivitychange') }} TOCTRANSFERACTIVITYCHANGE
+models/dims/cla_actvty_change_reason_td1.sql:222:				JOIN {{ source('timeseries_eos_finapp', 'todomaininstance') }} TODOMAININSTANCE
+models/dims/cla_actvty_status_td1.sql:106:				JOIN {{ source('timeseries_eos_finapp', 'todomaininstance') }} TODOMAININSTANCE
+models/dims/cla_contact_method_td1.sql:32:FROM {{ source('timeseries_eos_finapp', 'todomaininstance') }} TODOMAININSTANCE
+models/dims/cla_contact_reason_td1.sql:33:FROM {{ source('timeseries_eos_finapp', 'todomaininstance') }} TODOMAININSTANCE
+models/dims/cla_matter_type_td1.sql:135:								FROM {{ source('timeseries_eos_finapp', 'tocexternaldocumenttype') }} TOCEXTERNALDOCUMENTTYPE
+models/dims/cla_matter_type_td1.sql:149:								FROM {{ source('timeseries_eos_finapp', 'tocworddocumenttype') }} TOCWORDDOCUMENTTYPE
+models/dims/cla_matter_type_td1.sql:164:								FROM {{ source('timeseries_eos_finapp', 'tocsimpleeformtype') }} TOCSIMPLEEFORMTYPE
+models/dims/cla_matter_type_td1.sql:178:								FROM {{ source('timeseries_eos_finapp', 'toceformtype') }} TOCEFORMTYPE
+models/dims/cla_matter_type_td1.sql:185:					JOIN {{ source('timeseries_eos_finapp', 'todomaininstance') }} TODOMAININSTANCE
+models/dims/pmt_inv_srvc_type_status_td1.sql:140:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_LINE.SCHEDULE_ID ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:141:JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_HEADER.SCHEDULE_ID ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:142:JOIN {{ source('timeseries_mfp','service_line') }} SERVICE_LINE ON ( ( SCHEDULE_LINE.SCHEDULE_LINE_ID = SERVICE_LINE.SCHEDULE_LINE_ID ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:143:JOIN {{ source('timeseries_mfp','schedule_type') }} SCHEDULE_TYPE ON ( ( SCHEDULE_HEADER.SCHEDULE_TYPE_CODE = SCHEDULE_TYPE.SCHEDULE_TYPE_CODE ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:144:JOIN {{ source('timeseries_mfp','schedule_category_type') }} SCHEDULE_CATEGORY_TYPE ON ( ( SCHEDULE_HEADER.SCHEDULE_CATEGORY_TYPE_CODE = SCHEDULE_CATEGORY_TYPE.SCHEDULE_CATEGORY_TYPE_CODE ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:145:JOIN {{ source('timeseries_mfp','schedule_status_type') }} SCHEDULE_STATUS_TYPE ON ( ( SCHEDULE_HEADER.SCHEDULE_STATUS_TYPE_CODE = SCHEDULE_STATUS_TYPE.SCHEDULE_STATUS_TYPE_CODE ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:146:JOIN {{ source('timeseries_mfp','schedule_line_status_typ') }} SCHEDULE_LINE_STATUS_TYP ON ( ( SCHEDULE_LINE.SCHED_LINE_STATUS_CODE = SCHEDULE_LINE_STATUS_TYP.SCHED_LINE_STATUS_CODE ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:147:JOIN {{ source('timeseries_mfp','sched_line_pay_status_ty') }} SCHED_LINE_PAY_STATUS_TY ON ( ( SCHEDULE_LINE.SCHED_LINE_PAY_STATUS_CODE = SCHED_LINE_PAY_STATUS_TY.SCHED_LINE_PAY_STATUS_CODE ) )
+models/dims/pmt_inv_srvc_type_status_td1.sql:148:JOIN {{ source('timeseries_mfp','service_line_status_type') }} SERVICE_LINE_STATUS_TYPE ON ( ( SERVICE_LINE.SERVICE_LINE_STATUS_TYPE_CODE = SERVICE_LINE_STATUS_TYPE.SERVICE_LINE_STATUS_TYPE_CODE ) )
+models/dims/pmt_invoice_dsc_td1.sql:111:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_LINE.SCHEDULE_ID ) )
+models/dims/pmt_invoice_dsc_td1.sql:112:JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_HEADER.SCHEDULE_ID ) )
+models/dims/pmt_invoice_reason_td1.sql:95:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_LINE.SCHEDULE_ID ) )
+models/dims/pmt_invoice_reason_td1.sql:96:JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER ON ( ( PMT_INVOICE_SERVICE_LINE_TW1.SCHEDULE_ID = SCHEDULE_HEADER.SCHEDULE_ID ) )
+models/dims/pmt_invoice_reason_td1.sql:97:JOIN {{ source('timeseries_mfp','service_line') }} SERVICE_LINE ON ( ( SCHEDULE_LINE.SCHEDULE_LINE_ID = SERVICE_LINE.SCHEDULE_LINE_ID ) )
+models/dims/pmt_invoice_reason_td1.sql:102:{{ source('timeseries_mfp','reason_type') }} REASON_TYPE
+models/dims/pmt_invoice_reason_td1.sql:109:{{ source('timeseries_mfp','reason_type') }} REASON_TYPE
+models/dims/pmt_invoice_reason_td1.sql:116:{{ source('timeseries_mfp','reason_type') }} REASON_TYPE
+models/dims/po_header_td1.sql:142:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/dims/po_header_td1.sql:147:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/po_header_td1.sql:154:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/po_header_td1.sql:161:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/po_line_td1.sql:31:JOIN {{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION_TA1
+models/dims/po_line_td1.sql:183:{{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION
+models/dims/po_line_td1.sql:184:JOIN {{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP ON ( (( TOLAPPROVALDECISION.C_LNITMGRP_LINEITEMS = TOLAPPROVALGROUP.C )) AND (( TOLAPPROVALDECISION.I_LNITMGRP_LINEITEMS = TOLAPPROVALGROUP.I )) )
+models/dims/po_line_td1.sql:194:{{ source('timeseries_eos_finapp','tolservicedefinition') }} TOLSERVICEDEFINITION
+models/dims/po_line_td1.sql:205:{{ source('timeseries_mfp','master_item') }} MASTER_ITEM
+models/dims/po_line_td1.sql:212:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/po_line_td1.sql:219:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/dims/po_line_td1.sql:226:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/er_views/atomic/case_basic_ta1.sql:58:from {{ source('timeseries_pathway','case_basic') }}
+models/er_views/atomic/cost_transfer_ta1.sql:29:from {{ source('timeseries_pathway','cost_transfer') }}
+models/er_views/atomic/toccase_ta1.sql:68:from {{ source('timeseries_eos_finapp','toccase') }}
+models/er_views/atomic/toccasetyperole_ta1.sql:41:from {{ source('timeseries_eos_finapp','toccasetyperole') }}
+models/er_views/atomic/tocorganisation_ta1.sql:116:from {{ source('timeseries_eos_finapp','tocorganisation') }}
+models/er_views/atomic/tocpartycaserole_ta1.sql:54:from {{ source('timeseries_eos_finapp','tocpartycaserole') }}
+models/er_views/atomic/todomaininstance_ta1.sql:32:from {{ source('timeseries_eos_finapp','todomaininstance') }}
+models/er_views/atomic/tolclaim_ta1.sql:166:from {{ source('timeseries_eos_finapp','tolclaim') }}
+models/er_views/atomic/tolcost_ta1.sql:54:from {{ source('timeseries_eos_finapp','tolcost') }}
+models/er_views/atomic/tolmedicalcode_ta1.sql:43:from {{ source('timeseries_eos_finapp','tolmedicalcode') }}
+models/er_views/atomic/tolpaymentoutevent_ta1.sql:67:    from {{ source('timeseries_eos_finapp','tolpaymentoutevent') }}
+models/er_views/atomic/toreturnsdinstances_ta1.sql:35:    from {{ source('timeseries_eos_finapp','toreturnsdinstances') }}
+models/er_views/atomic/tosubsetinstance_ta1.sql:27:    from {{ source('timeseries_eos_finapp','tosubsetinstance') }}
+models/er_views/global/eod_audit_tg1.sql:12:from {{ source('global','load_batch_audit') }}
+models/facts/cla_actvty_change_tp1.sql:381:							FROM {{source('timeseries_eos_finapp','toconholdactivitychange')}} TOCONHOLDACTIVITYCHANGE
+models/facts/cla_actvty_change_tp1.sql:414:							FROM {{source('timeseries_eos_finapp','tocmanoffholdactivitycha')}} TOCMANOFFHOLDACTIVITYCHA
+models/facts/cla_actvty_change_tp1.sql:447:							FROM {{source('timeseries_eos_finapp','toccancelactivitychange')}} TOCCANCELACTIVITYCHANGE
+models/facts/cla_actvty_change_tp1.sql:480:							FROM {{source('timeseries_eos_finapp','toccloseactivitychange')}} TOCCLOSEACTIVITYCHANGE
+models/facts/cla_actvty_change_tp1.sql:513:							FROM {{source('timeseries_eos_finapp','toctargetdateactivitycha')}} TOCTARGETDATEACTIVITYCHA
+models/facts/cla_actvty_change_tp1.sql:558:							FROM {{source('timeseries_eos_finapp','toctransferactivitychange')}} TOCTRANSFERACTIVITYCHANGE
+models/facts/cla_actvty_change_tp1.sql:568:			LEFT OUTER JOIN {{source('presentation','cla_actvty_change_tr1')}} CLA_ACTVTY_CHANGE_TR1 
+models/facts/cla_actvty_change_tp1.sql:620:LEFT OUTER JOIN {{source('presentation','cla_actvty_change_tf1')}} CLA_ACTVTY_CHANGE_TF1 
+models/facts/cla_actvty_proctask_fact_tp1.sql:430:	LEFT OUTER JOIN {{source('presentation','cla_actvty_proctask_fact_tf1')}}  CLA_ACTVTY_PROCTASK_FACT_TF1
+models/facts/cla_cntct_actv_mttr_fact_tp1.sql:353:			FROM {{source('presentation','rvw_review_td1') }} RVW_REVIEW_TD1
+models/facts/cla_cntct_actv_mttr_fact_tp1.sql:358:	LEFT OUTER JOIN  {{source('presentation','cla_cntct_actv_mttr_fact_tf1')}} CLA_CNTCT_ACTV_MTTR_FACT_TF1
+models/facts/cla_contact_fact_tp1.sql:290:							FROM {{ source('timeseries_eos_finapp', 'toccontact') }} TOCCONTACT
+models/facts/cla_contact_fact_tp1.sql:304:							FROM {{ source('timeseries_eos_finapp', 'tocemailcontact') }} TOCEMAILCONTACT
+models/facts/clm_claim_injury_tu1.sql:997:{{ source('global','infact_ref_data_lookup_tg1') }}  INFACT_REF_DATA_LOOKUP_TG1
+models/facts/clm_claim_injury_tu1.sql:1009:{{ source('global','infact_ref_data_lookup_tg1') }}  INFACT_REF_DATA_LOOKUP_TG1
+models/facts/clm_claim_tp1.sql:282:{{ source('presentation','clm_claim_tf1') }} CLM_CLAIM_TF1
+models/facts/clm_claim_tp1.sql:404:LEFT OUTER JOIN {{ source('edw','bd_weekly_comp_band_dn1') }} BD_WEEKLY_COMP_BAND_DN1 ON ( ( CD_CHANGED_CLAIM_MASTER_TW1.WC_CLAIM_IND = 'Y' AND CD_CHANGED_CLAIM_MASTER_TW1.TOT_CLAIM_PAID_WEEKLY_COMP_AMT BETWEEN BD_WEEKLY_COMP_BAND_DN1.WEEKLY_COMP_BAND_MIN_AMT and BD_WEEKLY_COMP_BAND_DN1.WEEKLY_COMP_BAND_MAX_AMT ) )
+models/facts/clm_claim_tp1.sql:405:LEFT OUTER JOIN {{ source('edw','bd_weekly_comp_days_band_dn1') }} BD_WEEKLY_COMP_DAYS_BAND_DN1 ON ( ( CD_CHANGED_CLAIM_MASTER_TW1.WC_CLAIM_IND = 'Y' AND CD_CHANGED_CLAIM_MASTER_TW1.WC_DAYS_CNT BETWEEN BD_WEEKLY_COMP_DAYS_BAND_DN1.WEEKLY_COMP_DAYS_BAND_MIN_CNT and BD_WEEKLY_COMP_DAYS_BAND_DN1.WEEKLY_COMP_DAYS_BAND_MAX_CNT ) )
+models/facts/clm_claim_tp1.sql:408:LEFT OUTER JOIN {{ source('presentation','age_band_td1') }} AGE_BAND_TD1
+models/facts/clm_claim_tp1.sql:411:LEFT OUTER JOIN {{ source('presentation','age_band_td1') }} AGE_BAND_TD1_1
+models/facts/clm_claim_tp1.sql:414:LEFT OUTER JOIN {{ source('presentation','age_band_td1') }} AGE_BAND_TD1_2
+models/facts/cust_feedback_case_tf1.sql:77:    FROM {{source('timeseries_eos_finapp','toccase')}} c
+models/facts/cust_feedback_case_tf1.sql:78:    INNER JOIN {{source('timeseries_eos_finapp','tocprocessinstance')}} pi
+models/facts/cust_feedback_case_tf1.sql:86:    INNER JOIN {{source('timeseries_eos_finapp','tocprocesstypeversion')}} ptv
+models/facts/cust_feedback_case_tf1.sql:92:    INNER JOIN {{source('timeseries_eos_finapp','tocextradata')}} xd
+models/facts/cust_feedback_case_tf1.sql:98:    INNER JOIN {{source('timeseries_eos_finapp','trfeedbackdetails')}} d
+models/facts/cust_feedback_case_tf1.sql:103:    INNER JOIN {{source('timeseries_eos_finapp','tocpartycaserole')}} pcr
+models/facts/cust_feedback_case_tf1.sql:108:    INNER JOIN {{source('timeseries_eos_finapp','toccasetyperole')}} ctr
+models/facts/cust_feedback_case_tf1.sql:152:    LEFT OUTER JOIN {{source('timeseries_eos_finapp','toccaselink')}} cl
+models/facts/cust_feedback_case_tf1.sql:157:    LEFT OUTER JOIN {{source('timeseries_eos_finapp','toccase')}} c45
+models/facts/cust_feedback_link_tb1.sql:48:	LEFT OUTER JOIN {{source('timeseries_eos_finapp','toccase')}} c
+models/facts/cust_feedback_link_tb1.sql:53:	LEFT OUTER JOIN {{source('timeseries_eos_finapp','toccaselink')}} l
+models/facts/cust_feedback_link_tb1.sql:58:	LEFT OUTER JOIN {{source('timeseries_eos_finapp','toccase')}} c45
+models/facts/cust_feedback_tf1.sql:78:                            THEN (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdra WHERE cdra.day_dte > fc.received_dte and cdra.day_dte <= fc.acknowledged_dte and cdra.business_day_ind = 'Y')
+models/facts/cust_feedback_tf1.sql:79:                        ELSE (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdar WHERE cdar.day_dte > fc.acknowledged_dte and cdar.day_dte <= fc.received_dte and cdar.business_day_ind = 'Y')
+models/facts/cust_feedback_tf1.sql:93:                            THEN (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdra WHERE cdra.day_dte > fc.received_dte and cdra.day_dte <= fc.closed_dte and cdra.business_day_ind = 'Y')
+models/facts/cust_feedback_tf1.sql:94:                        ELSE (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdar WHERE cdar.day_dte > fc.closed_dte and cdar.day_dte <= fc.received_dte and cdar.business_day_ind = 'Y')
+models/facts/cust_feedback_tf1.sql:163:                            THEN (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdra WHERE cdra.day_dte > cc.contact_dte and cdra.day_dte <= cc.last_update_dte and cdra.business_day_ind = 'Y')
+models/facts/cust_feedback_tf1.sql:164:                        ELSE (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdar WHERE cdar.day_dte > cc.last_update_dte and cdar.day_dte <= cc.contact_dte and cdar.business_day_ind = 'Y')
+models/facts/duplicate_party_te1.sql:286:{{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/facts/duplicate_party_te1.sql:297:{{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION) ) UNION_ALL ) LOOKUP_INPUT_SUBQUERY$3
+models/facts/duplicate_party_te1.sql:339:{{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/facts/duplicate_party_te1.sql:350:{{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION) ) UNION_ALL ) LOOKUP_INPUT_SUBQUERY$3
+models/facts/payment_event_trans_te1.sql:396:        JOIN {{ source('timeseries_eos_finapp','tolpaymentline') }} TOLPAYMENTLINE ON ( (( PAYMENT_EVENT_TW2.C_PAYMENT_EIF_ID = TOLPAYMENTLINE.C_PYMNTEIF_PAYMENTLINES )) AND (( PAYMENT_EVENT_TW2.I_PAYMENT_EIF_ID = TOLPAYMENTLINE.I_PYMNTEIF_PAYMENTLINES )) AND (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TOLPAYMENTLINE.META__RECORD_EFFECTIVE_FROM AND TOLPAYMENTLINE.META__RECORD_EFFECTIVE_TO )) )
+models/facts/payment_event_trans_te1.sql:397:        JOIN {{ source('timeseries_eos_finapp','tolpaymentlinegrpfordueevent') }} TOLPAYMENTLINEGRPFORDUEEVENT ON ( (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TOLPAYMENTLINEGRPFORDUEEVENT.META__RECORD_EFFECTIVE_FROM AND TOLPAYMENTLINEGRPFORDUEEVENT.META__RECORD_EFFECTIVE_TO )) AND (( TOLPAYMENTLINE.C_PLNGRDE_PAYMENTLINES = TOLPAYMENTLINEGRPFORDUEEVENT.C )) AND (( TOLPAYMENTLINE.I_PLNGRDE_PAYMENTLINES = TOLPAYMENTLINEGRPFORDUEEVENT.I )) )
+models/facts/payment_event_trans_te1.sql:398:        JOIN {{ source('timeseries_eos_finapp','tolpaymentdetailsforint') }} TOLPAYMENTDETAILSFORINT ON ( (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TOLPAYMENTDETAILSFORINT.META__RECORD_EFFECTIVE_FROM AND TOLPAYMENTDETAILSFORINT.META__RECORD_EFFECTIVE_TO )) AND (( TOLPAYMENTLINEGRPFORDUEEVENT.I_PYDDTLPI_PAYMENTDUEDET = TOLPAYMENTDETAILSFORINT.I )) AND (( TOLPAYMENTLINEGRPFORDUEEVENT.C_PYDDTLPI_PAYMENTDUEDET = TOLPAYMENTDETAILSFORINT.C )) )
+models/facts/payment_event_trans_te1.sql:399:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TODOMAININSTANCE.META__RECORD_EFFECTIVE_FROM AND TODOMAININSTANCE.META__RECORD_EFFECTIVE_TO )) AND (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TODOMAININSTANCE.META__RECORD_EFFECTIVE_FROM AND TODOMAININSTANCE.META__RECORD_EFFECTIVE_TO )) AND (( PAYMENT_EVENT_TW2.LEDGER_TYPE_CDE = TODOMAININSTANCE.I )) )
+models/facts/payment_event_trans_te1.sql:400:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( (( PAYMENT_EVENT_TW2.RUN_DAY_DTS between TODOMAININSTANCE_1.META__RECORD_EFFECTIVE_FROM AND TODOMAININSTANCE_1.META__RECORD_EFFECTIVE_TO )) AND (( TODOMAININSTANCE_1.I = TOLPAYMENTLINE.EXTENTITLEMENTTYPE )) )
+models/facts/payment_event_trans_te1.sql:409:        {{ source('timeseries_eos_eosint','ref_entitlement_type_gl_code') }} REF_ENTITLEMENT_TYPE_GL_CODE
+models/facts/payment_event_trans_te1.sql:488:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','rpymntvntallctninallocationins') }} RPYMNTVNTALLCTNINALLOCATIONINS 
+models/facts/payment_event_trans_te1.sql:493:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolallocationinstruction') }} TOLALLOCATIONINSTRUCTION 
+models/facts/payment_event_trans_te1.sql:498:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tollocalmoneyamount') }} TOLLOCALMONEYAMOUNT 
+models/facts/payment_event_trans_te1.sql:503:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolfixedamountincreaseinstr') }} TOLFIXEDAMOUNTINCREASEINSTR 
+models/facts/payment_event_trans_te1.sql:508:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE 
+models/facts/payment_event_trans_te1.sql:512:        LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1$1 
+models/facts/payment_event_trans_te1.sql:525:                            {{ source('timeseries_eos_eosint','ref_entitlement_type_gl_code') }} REF_ENTITLEMENT_TYPE_GL_CODE
+models/facts/pmt_invoice_service_line_tp1.sql:664:{{ source('presentation','pmt_invoice_service_line_tr1') }} PMT_INVOICE_SERVICE_LINE_TR1) ) UNION_WITH_REJECTS ) AGG_INPUT
+models/facts/pmt_invoice_service_line_tp1.sql:667:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( INGRP1.A_INVOICE_NBK = SCHEDULE_LINE.SCHEDULE_ID ) )
+models/facts/pmt_invoice_service_line_tp1.sql:668:JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER ON ( ( INGRP1.A_INVOICE_NBK = SCHEDULE_HEADER.SCHEDULE_ID ) )
+models/facts/pmt_invoice_service_line_tp1.sql:669:JOIN {{ source('timeseries_mfp','service_line') }} SERVICE_LINE ON ( ( SCHEDULE_LINE.SCHEDULE_LINE_ID = SERVICE_LINE.SCHEDULE_LINE_ID ) )
+models/facts/pmt_invoice_service_line_tp1.sql:674:{{ source('timeseries_pathway','case_basic') }} CASE_BASIC
+models/facts/pmt_invoice_service_line_tp1.sql:695:{{ source('timeseries_mfp','master_item') }} MASTER_ITEM
+models/facts/pmt_invoice_service_line_tp1.sql:710:{{ source('timeseries_mfp','service_approval_line') }} SERVICE_APPROVAL_LINE
+models/facts/pmt_payment_item_tp1.sql:277:        LEFT OUTER JOIN {{ source('presentation','pmt_payment_item_tr1') }} PMT_PAYMENT_ITEM_TR1 
+models/facts/po_line_fact_tf1.sql:28:JOIN {{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION ON ( ( PO_LINE_FACT_TF1_1.PO_LINE_NBK = TOLAPPROVALDECISION.EXTEXTERNALENTITYID ) )
+models/facts/po_line_fact_tf1.sql:220:JOIN {{ source('presentation','po_line_status_td1') }} PO_LINE_STATUS_TD1 ON ( ( PO_LINE_FACT_TF1_1.PO_LINE_STATUS_SK = PO_LINE_STATUS_TD1.PO_LINE_STATUS_SK ) )
+models/facts/po_line_fact_tp1.sql:1632:{{ source('presentation','po_line_fact_tr1') }} ) ) UNION_WITH_REJECTS ) LOOKUP_INPUT_SUBQUERY$1
+models/facts/provider_primary_voc_te1.sql:223:JOIN {{ source('timeseries_mfp','provider_voc_class') }} PROVIDER_VOC_CLASS ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) BETWEEN PROVIDER_VOC_CLASS.META__RECORD_EFFECTIVE_FROM AND PROVIDER_VOC_CLASS.META__RECORD_EFFECTIVE_TO ) )
+models/facts/provider_primary_voc_te1.sql:224:JOIN {{ source('timeseries_mfp','vocational_class') }} VOCATIONAL_CLASS ON ( (( PROVIDER_VOC_CLASS.VOCATIONAL_CLASS_ID = VOCATIONAL_CLASS.VOCATIONAL_CLASS_ID )) AND (( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) BETWEEN VOCATIONAL_CLASS.META__RECORD_EFFECTIVE_FROM AND VOCATIONAL_CLASS.META__RECORD_EFFECTIVE_TO )) )
+models/facts/provider_primary_voc_te1.sql:231:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/facts/schedule_line_contract_te1.sql:202:                        JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE 
+models/facts/schedule_line_contract_te1.sql:243:                                        {{ source('timeseries_mfp','contract') }} CONTRACT
+models/facts/schedule_line_provider_te1.sql:183:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) BETWEEN SCHEDULE_LINE.META__RECORD_EFFECTIVE_FROM AND SCHEDULE_LINE.META__RECORD_EFFECTIVE_TO ) )
+models/facts/schedule_line_provider_te1.sql:189:{{ source('timeseries_mfp','provider') }} PROVIDER
+models/facts/schedule_line_provider_te1.sql:199:{{ source('timeseries_mfp','provider') }} PROVIDER
+models/facts/service_line_payment_te1.sql:15:,"SET C2_11_C2 = (SELECT TARGET_ATTRIBUTE_VALUE FROM {{ source('global','infact_ref_data_lookup_tg1') }} WHERE SOURCE_SYSTEM_CDE = 'PROCESS_PARAMETER' AND SOURCE_ATTRIBUTE_1_NME = 'INPUT_PARAMETER_NAME'   AND   SOURCE_ATTRIBUTE_1_VALUE = 'AES_PAYMENT_OFFICE' AND CURRENT_TIMESTAMP BETWEEN FROM_DTE AND TO_DTE)"
+models/facts/service_line_payment_te1.sql:971:                LEFT OUTER JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE 
+models/facts/service_line_payment_te1.sql:974:                LEFT OUTER JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER 
+models/facts/service_line_rev_adj_te1.sql:246:						LEFT OUTER JOIN {{ source('timeseries_mfp', 'service_line') }} SERVICE_LINE_1
+models/facts/service_line_rev_adj_te1.sql:250:					LEFT OUTER JOIN {{ source('timeseries_mfp', 'service_line') }} SERVICE_LINE_2
+models/facts/service_line_rev_adj_te1.sql:255:					LEFT OUTER JOIN {{ source('timeseries_mfp', 'service_line') }} SERVICE_LINE_3
+models/facts/user_id_staff_id_map_te1.sql:460:                    JOIN {{ source('timeseries_eos_finsec','tosuser') }} TOSUSER 
+models/facts/user_id_staff_id_map_te1.sql:470:                        {{ source('timeseries_misc','mfp_ldap_user') }} MFP_LDAP_USER
+models/facts/user_id_staff_id_map_te1.sql:485:                            {{ source('timeseries_pathway','sec_user') }} SEC_USER
+models/views/cd_acc_code_vw1.sql:41:  FROM {{source('timeseries_eos_finapp','trengagementform')}} T
+models/views/cd_acc_code_vw1.sql:55:  FROM {{source('presentation','cd_acc_code_td1')}} CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:62:  FROM {{source('presentation','cd_acc_code_td1')}} CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:101:    FROM {{source('timeseries_eos_finapp','taccinterventiontype')}} T
+models/views/cd_acc_code_vw1.sql:122:    FROM {{source('presentation','cd_acc_code_td1')}} CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:141:  FROM {{source('timeseries_eos_finapp','tplanphase')}} T
+models/views/cd_acc_code_vw1.sql:155:  FROM {{source('presentation','cd_acc_code_td1')}}  CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:162:  FROM {{source('presentation','cd_acc_code_td1')}}  CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:189:  FROM {{source('presentation','cd_acc_code_td1')}}  CD_ACC_CODE_TD1
+models/views/cd_acc_code_vw1.sql:198:  FROM {{source('presentation','cd_acc_code_td1')}}  CD_ACC_CODE_TD1
+models/views/cd_organisation_unit_vw2.sql:43:               FROM  {{ source('timeseries_hris','psoprdefn') }} psoprdefn
+models/views/cd_organisation_unit_vw2.sql:95:               FROM {{ source('timeseries_hris','ps_job') }} ps_job
+models/views/cd_organisation_unit_vw2.sql:125:               FROM {{ source('timeseries_hris','ps_org_struct_acc') }} ps_org_struct_acc
+models/views/cd_organisation_unit_vw2.sql:139:               FROM {{ source('timeseries_hris','ps_employees') }} ps_employees
+models/views/cd_organisation_unit_vw2.sql:182:                    LEFT JOIN {{ source('timeseries_hris','ps_position_data') }}  p
+models/views/cd_organisation_unit_vw2.sql:194:                    LEFT JOIN {{ source('timeseries_hris','ps_location_tbl') }}  l
+models/views/cd_organisation_unit_vw2.sql:219:                    LEFT JOIN {{ source('timeseries_misc','function_location_map') }} f
+models/views/cd_organisation_unit_vw2.sql:234:               FROM  {{ source('timeseries_misc','hris_to_eos_map') }} hris_to_eos_map
+models/views/chart_of_accts_hierarchy_ve1.sql:29:     FROM {{ source('timeseries_orafin','fnd_flex_value_norm_hier') }} H
+models/views/chart_of_accts_hierarchy_ve1.sql:36:                 FROM {{ source('timeseries_orafin','fnd_flex_values_tl') }} T
+models/views/chart_of_accts_hierarchy_ve1.sql:37:                       JOIN {{ source('timeseries_orafin','fnd_flex_values') }} B
+models/work_tables/cd_acc_code_tw2.sql:223:                        FROM {{source('presentation','cd_acc_code_td1' ) }} CD_ACC_CODE_TD1 
+models/work_tables/cd_acc_code_tw2.sql:236:				FROM {{source('presentation','cd_acc_code_td1') }} CD_ACC_CODE_TD1
+models/work_tables/cd_address_tw1.sql:173:{{ source('timeseries_eos_finapp','tocpostaladdress') }} TOCPOSTALADDRESS
+models/work_tables/cd_address_tw1.sql:199:{{ source('timeseries_mfp','mfp_address_detail') }} MFP_ADDRESS_DETAIL
+models/work_tables/cd_address_tw1.sql:225:{{ source('timeseries_ips2','employer_contact_address') }} EMPLOYER_CONTACT_ADDRESS
+models/work_tables/cd_address_tw1.sql:251:{{ source('timeseries_ips2','levy_client_address') }} LEVY_CLIENT_ADDRESS
+models/work_tables/cd_address_tw1.sql:322:{{ source('timeseries_orafin','hz_locations') }} HZ_LOCATIONS
+models/work_tables/cd_address_tw1.sql:393:{{ source('timeseries_orafin','hz_parties') }} HZ_PARTIES
+models/work_tables/cd_address_tw1.sql:464:{{ source('timeseries_orafin','ap_supplier_sites_all') }} AP_SUPPLIER_SITES_ALL
+models/work_tables/cd_address_tw1.sql:490:{{ source('timeseries_aes','person_address') }} PERSON_ADDRESS_TA2
+models/work_tables/cd_address_tw2.sql:75:{{ source('presentation','cd_address_td1') }} CD_ADDRESS_TD1) ) MINUS1
+models/work_tables/cd_changed_claim_master_tw1.sql:16:,"SET C2_10_A3 = (SELECT TO_NUMBER(TARGET_ATTRIBUTE_VALUE) FROM {{ source('global','infact_ref_data_lookup_tg1') }} WHERE SOURCE_SYSTEM_CDE = 'PROCESS_PARAMETER' AND SOURCE_ATTRIBUTE_1_NME = 'INPUT_PARAMETER_NAME' AND SOURCE_ATTRIBUTE_1_VALUE = 'AES_PAYMENT_OFFICE' AND CURRENT_TIMESTAMP BETWEEN FROM_DTE AND TO_DTE)"
+models/work_tables/cd_claim_management_tw1.sql:138:                JOIN {{ source('timeseries_eos_finapp','tocprocessinstance') }} TOCPROCESSINSTANCE ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCPROCESSINSTANCE.META__RECORD_EFFECTIVE_FROM AND TOCPROCESSINSTANCE.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCPROCESSINSTANCE.C_OCCASE_RESULTINGFROM )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCPROCESSINSTANCE.I_OCCASE_RESULTINGFROM )) )
+models/work_tables/cd_claim_management_tw1.sql:139:                JOIN {{ source('timeseries_eos_finapp','tocprocesstypeversion') }} TOCPROCESSTYPEVERSION ON ( (( TOCPROCESSINSTANCE.C_OCPRSTPV_PROCESSINSTAN = TOCPROCESSTYPEVERSION.C )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCPROCESSTYPEVERSION.META__RECORD_EFFECTIVE_FROM AND TOCPROCESSTYPEVERSION.META__RECORD_EFFECTIVE_TO )) AND (( TOCPROCESSINSTANCE.I_OCPRSTPV_PROCESSINSTAN = TOCPROCESSTYPEVERSION.I )) )
+models/work_tables/cd_claim_management_tw1.sql:140:                JOIN {{ source('timeseries_eos_finapp','tocprocesstype') }} TOCPROCESSTYPE ON ( (( TOCPROCESSTYPEVERSION.I_OCPROTYP_PROCESSTYPEVE = TOCPROCESSTYPE.I )) AND (( TOCPROCESSTYPEVERSION.C_OCPROTYP_PROCESSTYPEVE = TOCPROCESSTYPE.C )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCPROCESSTYPE.META__RECORD_EFFECTIVE_FROM AND TOCPROCESSTYPE.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/cd_claim_management_tw1.sql:155:                                    {{ source('timeseries_eos_finapp','toctransferactivitychange') }} TOCTRANSFERACTIVITYCHANGE
+models/work_tables/cd_claim_management_tw1.sql:163:                                    {{ source('timeseries_eos_finsec','tosgroup') }} TOSGROUP
+models/work_tables/cd_claim_management_tw1.sql:173:                                    {{ source('timeseries_eos_finsec','tosgroup') }} TOSGROUP
+models/work_tables/cd_claim_management_tw1.sql:183:                                    {{ source('timeseries_eos_finsec','tosgroup') }} TOSGROUP
+models/work_tables/cd_claim_management_tw1.sql:192:                                        {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_claim_management_tw1.sql:229:                JOIN {{ source('edw','case_log_pre_eos_static_ta1') }} CASE_LOG_PRE_EOS_STATIC 
+models/work_tables/cd_contact_tw1.sql:49:JOIN {{ source('timeseries_aes','person') }} PERSON_TA2 ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) BETWEEN PERSON_TA2.META__RECORD_EFFECTIVE_FROM AND PERSON_TA2.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_contact_tw2.sql:92:                    {{ source('timeseries_eos_finapp','toccontactmedium') }} TOCCONTACTMEDIUM
+models/work_tables/cd_contact_tw3.sql:159:                                    {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_contact_tw3.sql:169:            LEFT OUTER JOIN {{ source('global','infact_ref_data_desc_tg1') }} INFACT_REF_DATA_DESC_TG1 
+models/work_tables/cd_contact_tw4.sql:85:JOIN {{ source('timeseries_mfp','mfp_contact') }} MFP_CONTACT ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between MFP_CONTACT.META__RECORD_EFFECTIVE_FROM and MFP_CONTACT.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_contact_tw4.sql:93:{{ source('timeseries_mfp','mfp_contact_type') }} MFP_CONTACT_TYPE
+models/work_tables/cd_contact_tw4.sql:109:{{ source('timeseries_mfp','vendor') }} VENDOR
+models/work_tables/cd_contact_tw4.sql:123:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_contact_tw4.sql:129:LEFT OUTER JOIN {{ source('global','infact_ref_data_desc_tg1') }} INFACT_REF_DATA_DESC_TG1 ON ( ( ( INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_NME = REF_LOOKUP.REF_TARGET_ATTRIBUTE_NME and INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_VALUE = REF_LOOKUP.REF_TARGET_ATTRIBUTE_VALUE ) ) )
+models/work_tables/cd_contact_tw6.sql:102:JOIN {{ source('timeseries_ips2','levy_client_phone') }} LEVY_CLIENT_PHONE ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between LEVY_CLIENT_PHONE.META__RECORD_EFFECTIVE_FROM and LEVY_CLIENT_PHONE.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_contact_tw6.sql:110:{{ source('timeseries_ips2','levy_client') }} LEVY_CLIENT
+models/work_tables/cd_contact_tw7.sql:71:JOIN {{ source('timeseries_ips2','employer_contact') }} EMPLOYER_CONTACT ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between EMPLOYER_CONTACT.META__RECORD_EFFECTIVE_FROM and EMPLOYER_CONTACT.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_contact_tw7.sql:79:{{ source('timeseries_ips2','employer_contact_type') }} EMPLOYER_CONTACT_TYPE
+models/work_tables/cd_contact_tw7.sql:92:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_dimension_address_map_tw1.sql:42:JOIN {{ source('timeseries_aes','person') }} PERSON_TA2 ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) BETWEEN PERSON_TA2.META__RECORD_EFFECTIVE_FROM AND PERSON_TA2.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_dimension_address_map_tw2.sql:58:{{ source('timeseries_eos_finapp','tocpartyaddressversion') }} TOCPARTYADDRESSVERSION
+models/work_tables/cd_dimension_address_map_tw2.sql:59:JOIN {{ source('timeseries_eos_finapp','tocpartyaddress') }} TOCPARTYADDRESS 
+models/work_tables/cd_dimension_address_map_tw2.sql:94:        {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/cd_dimension_address_map_tw2.sql:109:        {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION
+models/work_tables/cd_dimension_address_map_tw2.sql:125:                    {{ source('timeseries_eos_finapp','tocpartyaddress') }} TOCPARTYADDRESS_1
+models/work_tables/cd_dimension_address_map_tw3.sql:108:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_dimension_address_map_tw3.sql:114:LEFT OUTER JOIN {{ source('global','infact_ref_data_desc_tg1') }} INFACT_REF_DATA_DESC_TG1 ON ( ( ( INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_NME = REF_DATA_LOOKUP.TARGET_ATTRIBUTE_NME and REF_DATA_LOOKUP.TARGET_ATTRIBUTE_VALUE = INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_VALUE ) ) )
+models/work_tables/cd_dimension_address_map_tw4.sql:71:JOIN {{ source('timeseries_mfp','mfp_address_detail') }} MFP_ADDRESS_DETAIL ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between MFP_ADDRESS_DETAIL.META__RECORD_EFFECTIVE_FROM and MFP_ADDRESS_DETAIL.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_dimension_address_map_tw4.sql:72:JOIN {{ source('timeseries_mfp','address_type') }} ADDRESS_TYPE_TA2 ON ( ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between ADDRESS_TYPE_TA2.META__RECORD_EFFECTIVE_FROM and ADDRESS_TYPE_TA2.META__RECORD_EFFECTIVE_TO and MFP_ADDRESS_DETAIL.ADDRESS_TYPE_CODE = ADDRESS_TYPE_TA2.ADDRESS_TYPE_CODE ) ) )
+models/work_tables/cd_dimension_address_map_tw4.sql:79:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_dimension_address_map_tw6.sql:70:JOIN {{ source('timeseries_ips2','levy_client_address') }} LEVY_CLIENT_ADDRESS ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between LEVY_CLIENT_ADDRESS.META__RECORD_EFFECTIVE_FROM and LEVY_CLIENT_ADDRESS.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_dimension_address_map_tw6.sql:71:JOIN {{ source('timeseries_ips2','address_type') }} ADDRESS_TYPE ON ( ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between ADDRESS_TYPE.META__RECORD_EFFECTIVE_FROM and ADDRESS_TYPE.META__RECORD_EFFECTIVE_TO and LEVY_CLIENT_ADDRESS.ADDRESS_TYPE_CODE = ADDRESS_TYPE.ADDRESS_TYPE_CODE ) ) )
+models/work_tables/cd_dimension_address_map_tw6.sql:78:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_dimension_address_map_tw6.sql:84:LEFT OUTER JOIN {{ source('global','infact_ref_data_desc_tg1') }} INFACT_REF_DATA_DESC_TG1 ON ( ( ( INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_VALUE = REF_LOOKUP.RL_TARGET_ATTRIBUTE_VALUE and INFACT_REF_DATA_DESC_TG1.TARGET_ATTRIBUTE_VALUE = REF_LOOKUP.RL_TARGET_ATTRIBUTE_VALUE ) ) )
+models/work_tables/cd_dimension_address_map_tw8.sql:46:JOIN {{ source('timeseries_ips2','employer_contact_address') }} EMPLOYER_CONTACT_ADDRESS ON ( ( (TO_TIMESTAMP(TO_CHAR(CD_DATE_TD1.DAY_DTE,'DD-MON-YYYY')||' 23:59:59.999999','DD-MON-YYYY HH24:MI:SS.FF6') ) between EMPLOYER_CONTACT_ADDRESS.META__RECORD_EFFECTIVE_FROM AND EMPLOYER_CONTACT_ADDRESS.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/cd_organisation_unit_tw1.sql:244:                        {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2
+models/work_tables/cd_organisation_unit_tw1.sql:286:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1 ) DEDUP_INPUT_SUBQUERY2$1
+models/work_tables/cd_organisation_unit_tw1.sql:322:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1
+models/work_tables/cd_organisation_unit_tw1.sql:330:                {{ source('timeseries_apex','acc_branch') }} ACC_BRANCH
+models/work_tables/cd_organisation_unit_tw1.sql:369:                {{ source('timeseries_apex','acc_team') }} ACC_TEAM
+models/work_tables/cd_organisation_unit_tw1.sql:370:                JOIN {{ source('timeseries_apex','acc_branch') }} ACC_BRANCH ON ( ( ACC_TEAM.BRANCH_ID = ACC_BRANCH.BRANCH_ID ) )
+models/work_tables/cd_organisation_unit_tw1.sql:371:                LEFT OUTER JOIN {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1 ON ( ( ACC_BRANCH.ACC_BRANCH_ID = BD_OFFICE_DN1.DEPARTMENT_SK ) )
+models/work_tables/cd_organisation_unit_tw1.sql:479:                                    {{ source('timeseries_apex','acc_user') }} ACC_USER
+models/work_tables/cd_organisation_unit_tw1.sql:486:                                FULL OUTER JOIN {{ source('edw','bd_staff_dn1') }} BD_STAFF_DN1 
+models/work_tables/cd_organisation_unit_tw1.sql:489:                        LEFT OUTER JOIN {{ source('edw','bd_staff_dn1') }} BD_STAFF_DN1 ON ( ( ACCUSER.BDS_NEW_STAFF_BK = BD_STAFF_DN1.STAFF_BK ) )
+models/work_tables/cd_organisation_unit_tw1.sql:496:                            {{ source('timeseries_apex','acc_team') }} ACC_TEAM
+models/work_tables/cd_organisation_unit_tw1.sql:507:                            {{ source('timeseries_apex','acc_branch') }} ACC_BRANCH
+models/work_tables/cd_organisation_unit_tw1.sql:518:                            {{ source('timeseries_apex','acc_role_hierarchy') }} ACC_ROLE_HIERARCHY
+models/work_tables/cd_organisation_unit_tw1.sql:549:                                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1
+models/work_tables/cd_organisation_unit_tw1.sql:550:                                JOIN {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1_1 
+models/work_tables/cd_organisation_unit_tw1.sql:598:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$3
+models/work_tables/cd_organisation_unit_tw1.sql:639:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$4
+models/work_tables/cd_organisation_unit_tw1.sql:680:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$5
+models/work_tables/cd_organisation_unit_tw1.sql:721:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$6
+models/work_tables/cd_organisation_unit_tw1.sql:762:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$7
+models/work_tables/cd_organisation_unit_tw1.sql:803:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$8
+models/work_tables/cd_organisation_unit_tw1.sql:846:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$9
+models/work_tables/cd_organisation_unit_tw1.sql:887:                {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1) DEDUP_INPUT_SUBQUERY2$10
+models/work_tables/cd_organisation_unit_tw1.sql:928:                        {{ source('edw','bd_office_dn1') }} BD_OFFICE_DN1
+models/work_tables/cd_party_client_tw1.sql:150:{{ source('timeseries_eos_finapp','trcareindicator') }} TRCAREINDICATOR
+models/work_tables/cd_party_client_tw1.sql:163:{{ source('timeseries_eos_finapp','trcareindicator') }} TRCAREINDICATOR
+models/work_tables/cd_party_client_tw1.sql:176:{{ source('timeseries_eos_finapp','trimprisonmentindicator') }} TRIMPRISONMENTINDICATOR
+models/work_tables/cd_party_client_tw1.sql:189:{{ source('timeseries_eos_finapp','trconvictedformurderindicator') }} TRCONVICTEDFORMURDERINDI
+models/work_tables/cd_party_client_tw1.sql:202:{{ source('timeseries_eos_finapp','trfraudindicator') }} TRFRAUDINDICATOR
+models/work_tables/cd_party_client_tw1.sql:215:{{ source('timeseries_eos_finapp','trmanagementplan') }} 
+models/work_tables/cd_party_client_tw1.sql:229:{{ source('timeseries_eos_finapp','trministerialsparty') }} TRMINISTERIALSPARTY
+models/work_tables/cd_party_client_tw1.sql:242:{{ source('timeseries_eos_finapp','trcomplaintsparty') }} TRCOMPLAINTSPARTY
+models/work_tables/cd_party_client_tw1.sql:255:{{ source('timeseries_eos_finapp','tocextradatarelationship') }} TOCEXTRADATARELATIONSHIP
+models/work_tables/cd_party_client_tw1.sql:259:RIGHT OUTER JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( ( nvl ( EDR.B_C_OCEXDATA_HASSUBFORM , TR.A_FK_ED_C ) = TOCEXTRADATA.C and nvl ( EDR.B_I_OCEXDATA_HASSUBFORM , TR.A_FK_ED_I ) = TOCEXTRADATA.I ) )
+models/work_tables/cd_party_client_tw1.sql:260:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( ( TR.A_INDICATORSTATUS = TODOMAININSTANCE.I ) ) )
+models/work_tables/cd_party_client_tw2.sql:924:                {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/cd_party_client_tw2.sql:945:                    {{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE
+models/work_tables/cd_party_client_tw2.sql:946:                    JOIN {{ source('timeseries_eos_finapp','toccasetyperole') }} TOCCASETYPEROLE 
+models/work_tables/cd_party_client_tw2.sql:963:                    {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_party_client_tw2.sql:974:                    {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_party_client_tw2.sql:985:                    {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_party_client_tw2.sql:1009:                    {{ source('presentation','duplicate_party_te1') }} DUPLICATE_PARTY_TE1
+models/work_tables/cd_party_client_tw2.sql:1146:                                            {{ source('timeseries_eos_finapp','taccethnicity') }} TACCETHNICITY
+models/work_tables/cd_party_client_tw2.sql:1174:                                                {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_party_client_tw2.sql:1199:                                                {{ source('global','infact_ref_data_lookup_tg1') }}  INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/cd_party_client_tw2.sql:1274:                            {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/cd_party_client_tw2.sql:1275:                            JOIN {{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE 
+models/work_tables/cd_party_client_tw2.sql:1277:                            JOIN {{ source('timeseries_eos_finapp','toccasetyperole') }} TOCCASETYPEROLE 
+models/work_tables/cd_party_client_tw2.sql:1338:                                            {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/cd_party_client_tw2.sql:1394:                                        {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON) LOOKUP_INPUT_SUBQUERY$6
+models/work_tables/cd_party_client_tw2.sql:1558:                            {{ source('timeseries_eos_finapp','trvulnerablesituationindicator') }} TRVULNERABLESITUATIONIND
+models/work_tables/cd_party_client_tw2.sql:1559:                            JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA 
+models/work_tables/cd_party_client_tw2.sql:1589:                                    {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/cd_party_client_tw2.sql:1598:                        JOIN {{ source('presentation','client_vulnerable_stn_td1') }} CLIENT_VULNERABLE_STN_TD1 
+models/work_tables/cd_party_client_tw2.sql:1671:                            {{ source('timeseries_eos_finapp','tocinformationalindicator') }} TOCINFORMATIONALINDICATO
+models/work_tables/cd_party_client_tw2.sql:1707:                        {{ source('timeseries_eos_finapp','tocinformationalindicator') }} TOCINFORMATIONALINDICATO_1
+models/work_tables/cd_party_client_tw2.sql:1737:                {{ source('presentation','cd_party_client_td1') }} CD_PARTY_CLIENT_TD1_2
+models/work_tables/cd_party_client_tw2.sql:1828:            {{ source('presentation','cd_party_client_td1') }} CD_PARTY_CLIENT_TD1_2
+models/work_tables/cd_party_client_tw2.sql:1842:                {{ source('presentation','cd_party_client_td1') }} CD_PARTY_CLIENT_TD1_3
+models/work_tables/cd_party_provider_tw1.sql:61:{{ source('timeseries_mfp','provider_alias') }} PROVIDER_ALIAS
+models/work_tables/cd_party_provider_tw2.sql:49:{{ source('timeseries_mfp','vocational_class') }} VOCATIONAL_CLASS
+models/work_tables/cd_party_provider_tw2.sql:56:{{ source('timeseries_mfp','prof_reg_body_type') }} PROF_REG_BODY_TYPE
+models/work_tables/cd_party_provider_tw2.sql:69:{{ source('timeseries_mfp','specialty_type') }} SPECIALTY_TYPE
+models/work_tables/cd_party_provider_tw2.sql:82:{{ source('timeseries_mfp','sub_specialty_type') }} SUB_SPECIALTY_TYPE
+models/work_tables/cla_actvty_proctask_tw2.sql:121:		LEFT OUTER JOIN {{source('presentation','cla_actvty_proctask_fact_tr1') }} CLA_ACTVTY_PROCTASK_FACT_TR1
+models/work_tables/cla_actvty_proctask_tw2.sql:158:	FROM {{ source('timeseries_eos_finapp', 'tocprocessinstance') }} TOCPROCESSINSTANCE
+models/work_tables/cla_actvty_proctask_tw2.sql:170:	FROM {{ source('timeseries_eos_finapp', 'tocprocesstypeversion') }} TOCPROCESSTYPEVERSION
+models/work_tables/cla_actvty_proctask_tw2.sql:203:	FROM {{ source('timeseries_eos_finapp', 'toctask') }} TOCTASK
+models/work_tables/cla_actvty_proctask_tw2.sql:226:	FROM {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE
+models/work_tables/cla_actvty_proctask_tw2.sql:237:	FROM {{ source('timeseries_eos_finapp', 'tocreasonforchange') }} TOCREASONFORCHANGE
+models/work_tables/cla_actvty_proctask_tw3.sql:312:{{ source('timeseries_eos_finapp','tocprocessinstance') }} TOCPROCESSINSTANCE
+models/work_tables/cla_actvty_proctask_tw3.sql:439:{{ source('timeseries_eos_finapp','toctask') }} TOCTASK
+models/work_tables/cla_actvty_proctask_twc.sql:68:		FROM {{ source('timeseries_eos_finapp', 'tocprocessinstance') }} TOCPROCESSINSTANCE
+models/work_tables/cla_actvty_proctask_twc.sql:86:		FROM {{ source('timeseries_eos_finapp', 'toctask') }} TOCTASK
+models/work_tables/cla_child_case_client_tw1.sql:56:				FROM {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE
+models/work_tables/cla_child_case_client_tw1.sql:89:					FROM {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE
+models/work_tables/cla_child_case_client_tw1.sql:90:					JOIN {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE_1
+models/work_tables/cla_child_case_client_tw1.sql:102:					FROM {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE
+models/work_tables/cla_child_case_client_tw1.sql:103:					JOIN {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE_1
+models/work_tables/cla_child_case_client_tw1.sql:105:					JOIN {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE_2
+models/work_tables/cla_claim_complaint_tw1.sql:43:{{ source('timeseries_eos_finapp','toccasetype') }} TOCCASETYPE
+models/work_tables/cla_claim_complaint_tw1.sql:44:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOCCASETYPE.C = TOCCASE.C_OCCASTYP_CASES )) AND (( TOCCASETYPE.I = TOCCASE.I_OCCASTYP_CASES )) )
+models/work_tables/cla_claim_complaint_tw1.sql:52:{{ source('timeseries_eos_finapp','trregistercomplaint') }} TRREGISTERCOMPLAINT
+models/work_tables/cla_claim_complaint_tw1.sql:53:JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( (( TRREGISTERCOMPLAINT.FK_ED_C = TOCEXTRADATA.C )) AND (( TRREGISTERCOMPLAINT.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/cla_cntct_actvty_matter_tw3.sql:232:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1
+models/work_tables/cla_cntct_actvty_matter_tw3.sql:239:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1
+models/work_tables/cla_cntct_actvty_matter_tw3.sql:246:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1
+models/work_tables/cla_contact_tw1.sql:206:					FROM {{ source('timeseries_eos_finapp', 'toccontact') }} TOCCONTACT
+models/work_tables/cla_contact_tw1.sql:230:					FROM {{ source('timeseries_eos_finapp', 'tocemailcontact') }} TOCEMAILCONTACT
+models/work_tables/cla_contact_tw1.sql:254:			FROM {{ source('timeseries_eos_finapp', 'toccase') }} TOCCASE
+models/work_tables/cla_contact_tw1.sql:263:			FROM {{ source('timeseries_eos_finapp', 'tocextradata') }} TOCEXTRADATA
+models/work_tables/cla_contact_tw1.sql:279:			FROM {{ source('timeseries_eos_finapp', 'trfeedbackcontactcategor') }} TRFEEDBACKCONTACTCATEGOR
+models/work_tables/cla_contact_tw1.sql:296:	FROM {{ source('timeseries_eos_finapp', 'rocprtyoccontbscontacts') }} ROCPRTYOCCONTBSCONTACTS
+models/work_tables/claim_hierarchy_tw1.sql:42:join {{ source('timeseries_eos_finapp','toccasealias') }}   toccasealias_ta1
+models/work_tables/claim_hierarchy_tw1.sql:45:join {{ source('timeseries_eos_finapp','toccase') }}  toccase_ta1
+models/work_tables/claim_hierarchy_tw1.sql:49:join {{ source('timeseries_eos_finapp','toccase') }}  parent_case
+models/work_tables/claim_hierarchy_tw1.sql:65:join {{ source('timeseries_eos_finapp','toccasealias') }}  child
+models/work_tables/claim_hierarchy_tw1.sql:68:join {{ source('timeseries_eos_finapp','toccase') }} toccase_ta1
+models/work_tables/claim_hierarchy_tw1.sql:71:left outer join {{ source('timeseries_eos_finapp','toccasealias') }} parent
+models/work_tables/claim_hierarchy_tw2.sql:61:join {{ source('timeseries_eos_finapp','tocpartycaserole') }}  tocpartycaserole_ta1
+models/work_tables/claim_hierarchy_tw3.sql:32:join {{ source('timeseries_eos_finapp','tocpartycaserole') }}  pcr
+models/work_tables/claim_hierarchy_tw3.sql:37:join {{ source('timeseries_eos_finapp','toccasetyperole') }}  toccasetyperole_ta1
+models/work_tables/claim_hierarchy_tw3.sql:41:join {{ source('timeseries_eos_finapp','tocperson') }}  tocperson_ta1
+models/work_tables/claim_hierarchy_tw3.sql:45:join {{ source('timeseries_eos_finapp','toccase') }} toccase_ta1
+models/work_tables/clm_aes_data_map_tw1.sql:24:{{ source('timeseries_eos_finapp','taccdatamap') }} TACCDATAMAP
+models/work_tables/clm_aes_data_map_tw1.sql:25:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TACCDATAMAP.TARGETVALUENUM = TODOMAININSTANCE.I ) )
+models/work_tables/clm_case_alias_tw1.sql:34:JOIN {{ source('timeseries_eos_finapp','toccasealias') }} TOCCASEALIAS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCCASEALIAS.META__RECORD_EFFECTIVE_FROM AND TOCCASEALIAS.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASEALIAS.C_OCCASE_CASEALIAS )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASEALIAS.I_OCCASE_CASEALIAS )) )
+models/work_tables/clm_case_escalation_tw1.sql:84:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLCLAIM.META__RECORD_EFFECTIVE_FROM AND TOLCLAIM.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOLCLAIM.C_OCCASE_CLAIMCASE )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOLCLAIM.I_OCCASE_CLAIMCASE )) )
+models/work_tables/clm_case_escalation_tw1.sql:103:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOLCLAIM.C_OCCASE_CLAIMCASE )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOLCLAIM.I_OCCASE_CLAIMCASE )) )
+models/work_tables/clm_case_escalation_tw1.sql:106:LEFT OUTER JOIN {{ source('timeseries_pathway','case_escalation') }} CASE_ESCALATION ON ( (( INGRP1.A_RUN_DAY_EOD_DTS between CASE_ESCALATION.META__RECORD_EFFECTIVE_FROM AND CASE_ESCALATION.META__RECORD_EFFECTIVE_TO )) AND (( INGRP1.A_PWY_CASE_ID = CASE_ESCALATION.CASE_ID )) ) ) INGRP1
+models/work_tables/clm_case_escalation_tw1.sql:107:LEFT OUTER JOIN {{ source('timeseries_pathway','case_basic') }} CASE_BASIC ON ( (( INGRP1.A_PWY_CASE_ID = CASE_BASIC.CASE_ID )) AND (( INGRP1.A_RUN_DAY_EOD_DTS between CASE_BASIC.META__RECORD_EFFECTIVE_FROM AND CASE_BASIC.META__RECORD_EFFECTIVE_TO )) )) LOOKUP_INPUT_SUBQUERY
+models/work_tables/clm_case_escalation_tw2.sql:61:{{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/clm_case_escalation_tw2.sql:63:JOIN {{ source('timeseries_eos_finapp','tolwageperiod') }} TOLWAGEPERIOD ON ( ( TOLWAGEPERIOD.C_CLM_WAGEPERIODS = TOLCLAIM.C and TOLWAGEPERIOD.I_CLM_WAGEPERIODS = TOLCLAIM.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLWAGEPERIOD.META__RECORD_EFFECTIVE_FROM and TOLWAGEPERIOD.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_case_escalation_tw2.sql:64:JOIN {{ source('timeseries_eos_finapp','tolwagebase') }} TOLWAGEBASE ON ( ( ( TOLWAGEBASE.C_WAGEPRD_WAGEBASES = TOLWAGEPERIOD.C and TOLWAGEBASE.I_WAGEPRD_WAGEBASES = TOLWAGEPERIOD.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLWAGEBASE.META__RECORD_EFFECTIVE_FROM and TOLWAGEBASE.META__RECORD_EFFECTIVE_TO ) ) )
+models/work_tables/clm_case_escalation_tw2.sql:65:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( ( TODOMAININSTANCE.I = TOLWAGEPERIOD.PERIODTYPE and TODOMAININSTANCE.NAME = 'Collection Period for DOFI' and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TODOMAININSTANCE.META__RECORD_EFFECTIVE_FROM and TODOMAININSTANCE.META__RECORD_EFFECTIVE_TO ) ) )
+models/work_tables/clm_case_escalation_tw2.sql:66:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( ( TODOMAININSTANCE_1.I = TOLWAGEBASE.STATUS and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TODOMAININSTANCE_1.META__RECORD_EFFECTIVE_FROM and TODOMAININSTANCE_1.META__RECORD_EFFECTIVE_TO ) ) )
+models/work_tables/clm_case_escalation_tw2.sql:77:{{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/clm_changed_child_claim_tw1.sql:66:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASE.C_OCCASE_CHILDCASES )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASE.I_OCCASE_CHILDCASES )) )
+models/work_tables/clm_changed_claim_tw1.sql:66:{{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/clm_changed_claim_tw1.sql:67:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOLCLAIM.C_OCCASE_CLAIMCASE = TOCCASE.C )) AND (( TOLCLAIM.I_OCCASE_CLAIMCASE = TOCCASE.I )) )
+models/work_tables/clm_changed_claim_tw1.sql:73:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE_CHILD_CASE
+models/work_tables/clm_changed_claim_tw1.sql:82:{{ source('timeseries_eos_finapp','toccasealias') }} TOCCASEALIAS
+models/work_tables/clm_changed_claim_tw1.sql:96:{{ source('timeseries_eos_finapp','taccclaimextensionholder') }} TACCCLAIMEXTENSIONHOLDER
+models/work_tables/clm_changed_claim_tw1.sql:104:{{ source('timeseries_eos_finapp','taccclaimmanagementcosts') }} TACCCLAIMMANAGEMENTCOSTS
+models/work_tables/clm_changed_claim_tw1.sql:113:{{ source('timeseries_eos_finapp','taccclaimextensionbase') }} TACCCLAIMEXTENSIONBASE
+models/work_tables/clm_changed_claim_tw1.sql:122:{{ source('timeseries_eos_finapp','tococcupation') }} TOCOCCUPATION
+models/work_tables/clm_changed_claim_tw1.sql:131:{{ source('timeseries_eos_finapp','tolclaimdisabilitydetails') }} TOLCLAIMDISABILITYDETAILS
+models/work_tables/clm_changed_claim_tw1.sql:140:{{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS
+models/work_tables/clm_changed_claim_tw1.sql:151:{{ source('timeseries_eos_finapp','taccclaimseriousinjurydetails') }} TACCCLAIMSERIOUSINJURYDETAILS
+models/work_tables/clm_changed_claim_tw1.sql:160:{{ source('timeseries_eos_finapp','taccsiclinicaldetails') }} TACCSICLINICALDETAILS
+models/work_tables/clm_changed_claim_tw1.sql:169:{{ source('timeseries_eos_finapp','taccrehabilitationpath') }} TACCREHABILITATIONPATH
+models/work_tables/clm_changed_claim_tw1.sql:180:{{ source('timeseries_eos_finapp','tolbenefit') }} TOLBENEFIT
+models/work_tables/clm_changed_claim_tw1.sql:191:{{ source('timeseries_eos_finapp','tolservicesholder') }} TOLSERVICESHOLDER
+models/work_tables/clm_changed_claim_tw1.sql:200:{{ source('timeseries_eos_finapp','taccintervention') }} TACCINTERVENTION
+models/work_tables/clm_changed_claim_tw1.sql:211:{{ source('timeseries_eos_finapp','taccclaimtreatmentdetails') }} TACCCLAIMTREATMENTDETAILS
+models/work_tables/clm_changed_claim_tw1.sql:220:{{ source('timeseries_eos_finapp','tacctreatmentcontext') }} TACCTREATMENTCONTEXT
+models/work_tables/clm_changed_claim_tw1.sql:231:{{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE
+models/work_tables/clm_changed_claim_tw1.sql:242:{{ source('timeseries_eos_finapp','tocprocessinstance') }} TOCPROCESSINSTANCE
+models/work_tables/clm_changed_claim_tw1.sql:252:{{ source('timeseries_eos_finapp','tolmedimpairmentassessment') }} TOLMEDIMPAIRMENTASSESSMENT
+models/work_tables/clm_changed_claim_tw1.sql:253:JOIN {{ source('timeseries_eos_finapp','tolmedicalimpairmentdetails') }} TOLMEDICALIMPAIRMENTDETAILS ON ( ( ( TOLMEDIMPAIRMENTASSESSMENT.C_MEDIMPDT_ASSESSMENTS = TOLMEDICALIMPAIRMENTDETAILS.C And TOLMEDIMPAIRMENTASSESSMENT.I_MEDIMPDT_ASSESSMENTS = TOLMEDICALIMPAIRMENTDETAILS.I ) ) )
+models/work_tables/clm_changed_claim_tw1.sql:254:JOIN {{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS_1 ON ( ( ( TOLMEDICALIMPAIRMENTDETAILS.C_CLMMDCLD_CLAIMMEDICALD = TOLCLAIMMEDICALDETAILS_1.C And TOLMEDICALIMPAIRMENTDETAILS.I_CLMMDCLD_CLAIMMEDICALD = TOLCLAIMMEDICALDETAILS_1.I ) ) )
+models/work_tables/clm_changed_claim_tw1.sql:255:JOIN {{ source('timeseries_eos_finapp','tolbenefit') }} TOLBENEFIT_1 ON ( ( ( TOLCLAIMMEDICALDETAILS_1.C_BNFT_MEDICALDTLSFO = TOLBENEFIT_1.C And TOLCLAIMMEDICALDETAILS_1.I_BNFT_MEDICALDTLSFO = TOLBENEFIT_1.I ) ) )
+models/work_tables/clm_changed_claim_tw1.sql:256:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_1 ON ( ( ( TOLBENEFIT_1.C_OCCASE_BENEFITCASE = TOCCASE_1.C And TOLBENEFIT_1.I_OCCASE_BENEFITCASE = TOCCASE_1.I ) ) )
+models/work_tables/clm_changed_claim_tw2.sql:63:{{ source('timeseries_pathway','case_basic') }} CASE_BASIC
+models/work_tables/clm_changed_claim_tw2.sql:68:{{ source('timeseries_pathway','incapacity_period') }} INCAPACITY_PERIOD
+models/work_tables/clm_changed_claim_tw2.sql:77:{{ source('timeseries_pathway','entitlement') }} ENTITLEMENT
+models/work_tables/clm_changed_claim_tw2.sql:85:{{ source('timeseries_pathway','manual_ia') }} MANUAL_IA
+models/work_tables/clm_changed_claim_tw2.sql:94:{{ source('timeseries_pathway','impairment_case') }} IMPAIRMENT_CASE
+models/work_tables/clm_changed_claim_tw2.sql:102:{{ source('timeseries_pathway','impairment_outcome') }} IMPAIRMENT_OUTCOME
+models/work_tables/clm_changed_claim_tw2.sql:110:{{ source('timeseries_pathway','impairment_injury') }} IMPAIRMENT_INJURY
+models/work_tables/clm_changed_claim_tw2.sql:118:{{ source('timeseries_pathway','entitlement_cost') }} ENTITLEMENT_COST
+models/work_tables/clm_changed_claim_tw2.sql:126:{{ source('timeseries_pathway','case_escalation') }} CASE_ESCALATION
+models/work_tables/clm_changed_claim_tw2.sql:139:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( ( INGRP1.LEGACY_CASE_IDENTIFIER = TOCCASE.CASENUMBER ) )
+models/work_tables/clm_changed_claim_tw3.sql:35:{{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA
+models/work_tables/clm_changed_claim_tw3.sql:36:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOCEXTRADATA.C_OCCASE_ASSOCIATEDDOC = TOCCASE.C )) AND (( TOCEXTRADATA.I_OCCASE_ASSOCIATEDDOC = TOCCASE.I )) )
+models/work_tables/clm_changed_claim_tw4.sql:53:{{ source('timeseries_eos_finapp','tocdocument') }} TOCDOCUMENT
+models/work_tables/clm_changed_claim_tw4.sql:54:JOIN {{ source('timeseries_eos_finapp','tocworddocumenttype') }} TOCWORDDOCUMENTTYPE ON ( (( TOCDOCUMENT.C_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.C )) AND (( TOCDOCUMENT.I_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.I )) )
+models/work_tables/clm_changed_claim_tw4.sql:62:{{ source('timeseries_eos_finapp','toccontact') }} TOCCONTACT
+models/work_tables/clm_changed_claim_tw4.sql:80:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/work_tables/clm_changed_claim_tw5.sql:35:{{ source('timeseries_eos_finapp','tolwageperiod') }} TOLWAGEPERIOD
+models/work_tables/clm_changed_claim_tw5.sql:36:JOIN {{ source('timeseries_eos_finapp','tolwagebase') }} TOLWAGEBASE ON ( (( TOLWAGEPERIOD.C = TOLWAGEBASE.C_WAGEPRD_WAGEBASES )) AND (( TOLWAGEPERIOD.I = TOLWAGEBASE.I_WAGEPRD_WAGEBASES )) )
+models/work_tables/clm_changed_claim_tw5.sql:37:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TOLWAGEPERIOD.PERIODTYPE = TODOMAININSTANCE.I ) )
+models/work_tables/clm_changed_claim_tw5.sql:38:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( TOLWAGEPERIOD.C_CLM_WAGEPERIODS = TOLCLAIM.C )) AND (( TOLWAGEPERIOD.I_CLM_WAGEPERIODS = TOLCLAIM.I )) )
+models/work_tables/clm_changed_claim_tw9.sql:78:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( INGRP1.A_CASE_C = TOCCASE.C )) AND (( INGRP1.A_CASE_I = TOCCASE.I )) )
+models/work_tables/clm_changed_claim_tw9.sql:79:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( INGRP1.A_CASE_C = TOLCLAIM.C_OCCASE_CLAIMCASE )) AND (( INGRP1.A_CASE_I = TOLCLAIM.I_OCCASE_CLAIMCASE )) )
+models/work_tables/clm_changed_claim_tw9.sql:84:{{ source('timeseries_pathway','case_basic') }} CASE_BASIC
+models/work_tables/clm_changed_injury_tw1.sql:72:{{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS
+models/work_tables/clm_changed_injury_tw1.sql:82:{{ source('timeseries_eos_finapp','tolcodevaluelink') }} TOLCODEVALUELINK_1
+models/work_tables/clm_changed_injury_tw1.sql:92:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( INGRP1.A_I_CLM_CLAIM = TOLCLAIM.I )) AND (( INGRP1.A_C_CLM_CLAIM = TOLCLAIM.C )) )
+models/work_tables/clm_changed_injury_tw1.sql:94:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOLCLAIM.C_OCCASE_CLAIMCASE = TOCCASE.C )) AND (( TOLCLAIM.I_OCCASE_CLAIMCASE = TOCCASE.I )) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:45:JOIN {{ source('presentation','cd_date_td1') }} CD_DATE_TD1 ON ( ( CD_CHANGED_CLAIM_MASTER_TW1.ACCIDENT_DTE = CD_DATE_TD1.DAY_DTE ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:46:JOIN {{ source('presentation','cd_party_levy_payer_td1') }} CD_PARTY_LEVY_PAYER_TD1_1 ON ( ( CD_CHANGED_CLAIM_MASTER_TW1.PARTY_LEVY_PAYER_ACC_NBR_BK = CD_PARTY_LEVY_PAYER_TD1_1.PARTY_ACC_NBR_BK and CD_DATE_TD1.DAY_DTE between CD_PARTY_LEVY_PAYER_TD1_1.ADM_FROM_DTM and CD_PARTY_LEVY_PAYER_TD1_1.ADM_TO_DTM ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:47:LEFT OUTER JOIN {{ source('presentation','cd_party_levy_payer_td1') }} CD_PARTY_LEVY_PAYER_TD1_2 ON ( ( CD_PARTY_LEVY_PAYER_TD1_1.GROUP_PRIME_LEVY_PAYER_BK = CD_PARTY_LEVY_PAYER_TD1_2.PARTY_ACC_NBR_BK and CD_DATE_TD1.DAY_DTE between CD_PARTY_LEVY_PAYER_TD1_2.ADM_FROM_DTM and CD_PARTY_LEVY_PAYER_TD1_2.ADM_TO_DTM ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:53:{{ source('presentation','cd_classification_unit_td1') }} CD_CLASSIFICATION_UNIT_TD1
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:56:LEFT OUTER JOIN {{ source('timeseries_ips2','levy_client') }} LEVY_CLIENT_1 ON ( ( CD_CHANGED_CLAIM_MASTER_TW1.PARTY_LEVY_PAYER_ACC_NBR_BK = nvl(LEVY_CLIENT_1.ACC_IDENTIFIER, '') || nvl(LEVY_CLIENT_1.ACC_SUFFIX, '') and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between LEVY_CLIENT_1.META__RECORD_EFFECTIVE_FROM and LEVY_CLIENT_1.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:61:{{ source('presentation','lp_ips2_account_manager_td1') }} LP_IPS2_ACCOUNT_MANAGER_TD1
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:64:LEFT OUTER JOIN {{ source('timeseries_ips2','lc_grouping_participatio') }} LC_GROUPING_PARTICIPATIO ON ( ( LEVY_CLIENT_1.LEVY_CLIENT_OID = LC_GROUPING_PARTICIPATIO.LEVY_CLIENT_OID and CD_CHANGED_CLAIM_MASTER_TW1.ACCIDENT_DTE between LC_GROUPING_PARTICIPATIO.START_DATE and LC_GROUPING_PARTICIPATIO.END_DATE and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between LC_GROUPING_PARTICIPATIO.META__RECORD_EFFECTIVE_FROM and LC_GROUPING_PARTICIPATIO.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:65:LEFT OUTER JOIN {{ source('timeseries_ips2','levy_client_grouping') }} LEVY_CLIENT_GROUPING ON ( ( LC_GROUPING_PARTICIPATIO.LEVY_CLIENT_GROUPING_OID = LEVY_CLIENT_GROUPING.LEVY_CLIENT_GROUPING_OID and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between LEVY_CLIENT_GROUPING.META__RECORD_EFFECTIVE_FROM and LEVY_CLIENT_GROUPING.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:66:LEFT OUTER JOIN {{ source('timeseries_ips2','levy_client_plan') }} LEVY_CLIENT_PLAN ON ( ( nvl ( LEVY_CLIENT_GROUPING.BILLABLE_ENTITY_OID , LEVY_CLIENT_1.BILLABLE_ENTITY_OID ) = LEVY_CLIENT_PLAN.BILLABLE_ENTITY_OID and CD_CHANGED_CLAIM_MASTER_TW1.ACCIDENT_DTE between LEVY_CLIENT_PLAN.START_DATE and (nvl(LEVY_CLIENT_PLAN.END_DATE, ($C2_5_C7 ) ) ) and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between LEVY_CLIENT_PLAN.META__RECORD_EFFECTIVE_FROM and LEVY_CLIENT_PLAN.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:67:LEFT OUTER JOIN {{ source('timeseries_ips2','policy_application') }} POLICY_APPLICATION ON ( ( LEVY_CLIENT_PLAN.POLICY_APPLICATION_OID = POLICY_APPLICATION.POLICY_APPLICATION_OID and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between POLICY_APPLICATION.META__RECORD_EFFECTIVE_FROM and POLICY_APPLICATION.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:68:LEFT OUTER JOIN {{ source('timeseries_ips2','incentive_rate') }} INCENTIVE_RATE ON ( ( LEVY_CLIENT_PLAN.INCENTIVE_RESULT_TYPE_CODE = INCENTIVE_RATE.INCENTIVE_RESULT_TYPE_CODE and (greatest(2001,CD_DATE_TD1.LEVY_YEAR_NBR) ) = INCENTIVE_RATE.PREMIUM_YEAR and (CAST(TIMESTAMPADD(days, 1, CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE) as timestamp) - INTERVAL '000001 MICROSECOND' ) between INCENTIVE_RATE.META__RECORD_EFFECTIVE_FROM and INCENTIVE_RATE.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_dim_sk_map_tw1.sql:69:LEFT OUTER JOIN {{ source('presentation','cd_levy_plan_td1') }} CD_LEVY_PLAN_TD1 ON ( ( ( CD_LEVY_PLAN_TD1.PRODUCT_CDE = (to_char( LEVY_CLIENT_PLAN.PRODUCT_CODE ) ) and CD_LEVY_PLAN_TD1.COVERPLUS_EXTRA_TYPE_CDE = nvl ( (to_char( POLICY_APPLICATION.CPX_APPLICATION_TYPE_CODE ) ) , ($C2_10_C3 ) ) and CD_LEVY_PLAN_TD1.INCENTIVE_TYPE_CDE = nvl ( (to_char( LEVY_CLIENT_PLAN.INCENTIVE_RESULT_TYPE_CODE ) ) , ($C2_10_C3 ) ) and CD_LEVY_PLAN_TD1.INCENTIVE_DISCOUNT_RTO = nvl ( INCENTIVE_RATE.DISCOUNT , ($C2_11_C2 ) ) and CD_LEVY_PLAN_TD1.STOP_LOSS_LIMIT_CDE = nvl ( (to_char( LEVY_CLIENT_PLAN.STOP_LOSS_LIMIT_CODE ) ) , ($C2_10_C3 ) ) and CD_LEVY_PLAN_TD1.HIGH_COST_CLAIM_STATUS_CDE = nvl ( (to_char( LEVY_CLIENT_PLAN.HIGH_COST_CLAIM_STATUS_CODE ) ) , ($C2_10_C3 ) ) and CD_LEVY_PLAN_TD1.CLAIM_MGMT_PERIOD_CDE = nvl ( (to_char( LEVY_CLIENT_PLAN.CLAIM_MGT_PERIOD_CODE ) ) , ($C2_10_C3 ) ) and CD_CHANGED_CLAIM_MASTER_TW1.RUN_DAY_DTE between CD_LEVY_PLAN_TD1.ADM_FROM_DTM and CD_LEVY_PLAN_TD1.ADM_TO_DTM and CD_LEVY_PLAN_TD1.PERCENTAGE_OF_RISK_RTO = nvl ( LEVY_CLIENT_PLAN.PERCENTAGE_OF_RISK , ($C2_11_C2 ) ) ) ) )
+models/work_tables/clm_claim_issc_tw1.sql:56:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASE.C )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASE.I )) )
+models/work_tables/clm_claim_issc_tw1.sql:57:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_1 ON ( (( TOCCASE_1.C_OCCASE_CHILDCASES = TOCCASE.C )) AND (( TOCCASE_1.I_OCCASE_CHILDCASES = TOCCASE.I )) )
+models/work_tables/clm_claim_issc_tw1.sql:88:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASE.C )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASE.I )) )
+models/work_tables/clm_claim_issc_tw1.sql:89:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_1 ON ( (( TOCCASE_1.C_OCCASE_CHILDCASES = TOCCASE.C )) AND (( TOCCASE_1.I_OCCASE_CHILDCASES = TOCCASE.I )) )
+models/work_tables/clm_claim_issc_tw1.sql:90:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_2 ON ( (( TOCCASE_2.I_OCCASE_CHILDCASES = TOCCASE_1.I )) AND (( TOCCASE_2.C_OCCASE_CHILDCASES = TOCCASE_1.C )) )
+models/work_tables/clm_claim_issc_tw1.sql:91:JOIN {{ source('timeseries_eos_finapp','trehabcasedetails') }} TREHABCASEDETAILS ON ( (( TREHABCASEDETAILS.I_OCCASE_THECASE = TOCCASE_2.I )) AND (( TREHABCASEDETAILS.C_OCCASE_THECASE = TOCCASE_2.C )) )
+models/work_tables/clm_claim_master_aes_tw1.sql:369:JOIN {{ source('timeseries_aes','case_basic') }} CASE_BASIC_TA2 ON ( ( (cast(CD_DATE_TD1.DAY_DTE as timestamp) + interval '86399 second' ) between CASE_BASIC_TA2.META__RECORD_EFFECTIVE_FROM AND CASE_BASIC_TA2.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_master_aes_tw1.sql:377:{{ source('timeseries_aes','case_basic') }} CASE_BASIC_TA2
+models/work_tables/clm_claim_master_aes_tw1.sql:393:{{ source('timeseries_aes','case_escalation') }} CASE_ESCALATION_TA2
+models/work_tables/clm_claim_master_aes_tw1.sql:404:{{ source('timeseries_aes','case_other') }} CASE_OTHER_TA2
+models/work_tables/clm_claim_master_aes_tw1.sql:424:{{ source('timeseries_aes','accident') }} ACCIDENT_TA2
+models/work_tables/clm_claim_master_aes_tw1.sql:437:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_aes_tw1.sql:455:{{ source('timeseries_aes','aedeletes') }} AEDELETES_TA2
+models/work_tables/clm_claim_master_aes_tw1.sql:462:{{ source('timeseries_aes','case_other') }} CASE_OTHER_TA2_1
+models/work_tables/clm_claim_master_aes_tw1.sql:470:{{ source('timeseries_aes','person') }} PERSON_TA2
+models/work_tables/clm_claim_master_eos_tw1.sql:395:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:403:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:411:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:419:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:427:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:435:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:443:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:451:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:459:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:467:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:475:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:483:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:491:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:499:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:507:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:515:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:523:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:531:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:539:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:547:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:555:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:563:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:571:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:579:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw1.sql:588:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:593:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:602:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:610:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:618:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:627:{{ source('global','infact_manual_hierarchy_tg1') }} INFACT_MANUAL_HIERARCHY_TG1
+models/work_tables/clm_claim_master_eos_tw1.sql:678:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw2.sql:439:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( ( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASE.C and CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASE.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCCASE.META__RECORD_EFFECTIVE_FROM and TOCCASE.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_claim_master_eos_tw2.sql:440:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM 
+models/work_tables/clm_claim_master_eos_tw2.sql:454:{{ source('timeseries_eos_finapp','taccclaimextensionholder') }} TACCCLAIMEXTENSIONHOLDER
+models/work_tables/clm_claim_master_eos_tw2.sql:457:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','taccclaimmanagementcosts') }} TACCCLAIMMANAGEMENTCOSTS ON ( ( INGRP25.A4_C_MGMTCST_ACCCLAIMMANAG = TACCCLAIMMANAGEMENTCOSTS.C and INGRP25.A4_I_MGMTCST_ACCCLAIMMANAG = TACCCLAIMMANAGEMENTCOSTS.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCCLAIMMANAGEMENTCOSTS.META__RECORD_EFFECTIVE_FROM and TACCCLAIMMANAGEMENTCOSTS.META__RECORD_EFFECTIVE_TO and TACCCLAIMMANAGEMENTCOSTS.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_claim_master_eos_tw2.sql:458:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','taccclaimextensionbase') }} TACCCLAIMEXTENSIONBASE ON ( ( INGRP25.A4_C_CLMEXBS_ACCCLAIMEXTEN = TACCCLAIMEXTENSIONBASE.C and INGRP25.A4_I_CLMEXBS_ACCCLAIMEXTEN = TACCCLAIMEXTENSIONBASE.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCCLAIMEXTENSIONBASE.META__RECORD_EFFECTIVE_FROM and TACCCLAIMEXTENSIONBASE.META__RECORD_EFFECTIVE_TO and TACCCLAIMEXTENSIONBASE.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_claim_master_eos_tw2.sql:465:{{ source('timeseries_eos_finapp','taccriskscorecalculation') }} TACCRISKSCORECALCULATION
+models/work_tables/clm_claim_master_eos_tw2.sql:469:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tococcupation') }} TOCOCCUPATION ON ( ( TOLCLAIM.C_OCOCCPTN_OCCUPATIONDET = TOCOCCUPATION.C and TOLCLAIM.I_OCOCCPTN_OCCUPATIONDET = TOCOCCUPATION.I and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCOCCUPATION.META__RECORD_EFFECTIVE_FROM and TOCOCCUPATION.META__RECORD_EFFECTIVE_TO and TOCOCCUPATION.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_claim_master_eos_tw2.sql:474:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_claim_master_eos_tw2.sql:481:LEFT OUTER JOIN {{ source('work_presentation','clm_medcert_expiry_tw1') }} CLM_MEDCERT_EXPIRY_TW1 ON ( ( CLM_MEDCERT_EXPIRY_TW1.CLAIM_BK = CLM_CHANGED_CLAIM_TW9.CASE_BK ) )
+models/work_tables/clm_cover_decision_tw1.sql:54:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLCLAIM.META__RECORD_EFFECTIVE_FROM AND TOLCLAIM.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TOLCLAIM.C )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TOLCLAIM.I )) )
+models/work_tables/clm_cover_decision_tw1.sql:55:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM_1 ON ( ( ( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TOLCLAIM_1.C and CLM_CHANGED_CLAIM_TW9.CLAIM_I = TOLCLAIM_1.I and TOLCLAIM_1.META__RECORD_EFFECTIVE_FROM <= TOLCLAIM.META__RECORD_EFFECTIVE_FROM ) ) )
+models/work_tables/clm_disability_detail_tw1.sql:29:JOIN {{ source('timeseries_eos_finapp','tolclaimdisabilitydetails') }} TOLCLAIMDISABILITYDETAILS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLCLAIMDISABILITYDETAILS.META__RECORD_EFFECTIVE_FROM AND TOLCLAIMDISABILITYDETAILS.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TOLCLAIMDISABILITYDETAILS.C_CLM_CLAIM )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TOLCLAIMDISABILITYDETAILS.I_CLM_CLAIM )) )
+models/work_tables/clm_document_tw1.sql:60:JOIN {{ source('timeseries_eos_finapp','tocdocument') }} TOCDOCUMENT ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TOCDOCUMENT.META__RECORD_EFFECTIVE_FROM AND TOCDOCUMENT.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_C = TOCDOCUMENT.C_OCCASE_ASSOCIATEDDOC )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_I = TOCDOCUMENT.I_OCCASE_ASSOCIATEDDOC )) )
+models/work_tables/clm_document_tw1.sql:61:JOIN {{ source('timeseries_eos_finapp','tocworddocumenttype') }} TOCWORDDOCUMENTTYPE ON ( (( TOCDOCUMENT.C_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.C )) AND (( TOCDOCUMENT.I_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.I )) )
+models/work_tables/clm_document_tw1.sql:74:JOIN {{ source('timeseries_eos_finapp','toccontact') }} TOCCONTACT ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TOCCONTACT.META__RECORD_EFFECTIVE_FROM AND TOCCONTACT.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_C = TOCCONTACT.C_OCCASE_CONTACTS )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_I = TOCCONTACT.I_OCCASE_CONTACTS )) )
+models/work_tables/clm_document_tw1.sql:75:JOIN {{ source('timeseries_eos_finapp','tocdocument') }} TOCDOCUMENT ON ( (( TOCDOCUMENT.C_OCCONT_ASSOCIATEDDOC = TOCCONTACT.C )) AND (( TOCDOCUMENT.I_OCCONT_ASSOCIATEDDOC = TOCCONTACT.I )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TOCDOCUMENT.META__RECORD_EFFECTIVE_FROM AND TOCDOCUMENT.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_document_tw1.sql:76:JOIN {{ source('timeseries_eos_finapp','tocworddocumenttype') }} TOCWORDDOCUMENTTYPE ON ( (( TOCDOCUMENT.I_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.I )) AND (( TOCDOCUMENT.C_OCDOCTYP_DOCUMENTS = TOCWORDDOCUMENTTYPE.C )) )
+models/work_tables/clm_eform_tw1.sql:196:JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TOCEXTRADATA.META__RECORD_EFFECTIVE_FROM AND TOCEXTRADATA.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_C = TOCEXTRADATA.C_OCCASE_ASSOCIATEDDOC )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.CHILD_CASE_I = TOCEXTRADATA.I_OCCASE_ASSOCIATEDDOC )) )
+models/work_tables/clm_eform_tw1.sql:207:{{ source('timeseries_eos_finapp','tracc45claim') }} TRACC45CLAIM
+models/work_tables/clm_eform_tw1.sql:208:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( TRACC45CLAIM.ACCTOCALLPROVIDER = TODOMAININSTANCE_1.I ) )
+models/work_tables/clm_eform_tw1.sql:212:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trcivildamagesindicator') }} TRCIVILDAMAGESINDICATOR ON ( (( TRCIVILDAMAGESINDICATOR.FK_ED_C = TOCEXTRADATA.C )) AND (( TRCIVILDAMAGESINDICATOR.FK_ED_I = TOCEXTRADATA.I )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRCIVILDAMAGESINDICATOR.META__RECORD_EFFECTIVE_FROM AND TRCIVILDAMAGESINDICATOR.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_eform_tw1.sql:213:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trrepugnanttojusticeindicator') }} TRREPUGNANTTOJUSTICEINDICATOR ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRREPUGNANTTOJUSTICEINDICATOR.META__RECORD_EFFECTIVE_FROM AND TRREPUGNANTTOJUSTICEINDICATOR.META__RECORD_EFFECTIVE_TO )) AND (( TRREPUGNANTTOJUSTICEINDICATOR.FK_ED_C = TOCEXTRADATA.C )) AND (( TRREPUGNANTTOJUSTICEINDICATOR.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:214:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trwilfulselfinflictindicator') }} TRWILFULSELFINFLICTINDICATOR ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRWILFULSELFINFLICTINDICATOR.META__RECORD_EFFECTIVE_FROM AND TRWILFULSELFINFLICTINDICATOR.META__RECORD_EFFECTIVE_TO )) AND (( TRWILFULSELFINFLICTINDICATOR.FK_ED_C = TOCEXTRADATA.C )) AND (( TRWILFULSELFINFLICTINDICATOR.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:215:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trrehabpwindicator') }} TRREHABPWINDICATOR ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRREHABPWINDICATOR.META__RECORD_EFFECTIVE_FROM AND TRREHABPWINDICATOR.META__RECORD_EFFECTIVE_TO )) AND (( TRREHABPWINDICATOR.FK_ED_C = TOCEXTRADATA.C )) AND (( TRREHABPWINDICATOR.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:216:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trmedical') }} TRMEDICAL ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRMEDICAL.META__RECORD_EFFECTIVE_FROM AND TRMEDICAL.META__RECORD_EFFECTIVE_TO )) AND (( TRMEDICAL.FK_ED_C = TOCEXTRADATA.C )) AND (( TRMEDICAL.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:217:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trsocial') }} TRSOCIAL ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRSOCIAL.META__RECORD_EFFECTIVE_FROM AND TRSOCIAL.META__RECORD_EFFECTIVE_TO )) AND (( TRSOCIAL.FK_ED_C = TOCEXTRADATA.C )) AND (( TRSOCIAL.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:218:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trvocational') }} TRVOCATIONAL ON ( (( TRVOCATIONAL.FK_ED_C = TOCEXTRADATA.C )) AND (( TRVOCATIONAL.FK_ED_I = TOCEXTRADATA.I )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRVOCATIONAL.META__RECORD_EFFECTIVE_FROM AND TRVOCATIONAL.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_eform_tw1.sql:219:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trinitialinterviewscript') }} TRINITIALINTERVIEWSCRIPT ON ( (( TRINITIALINTERVIEWSCRIPT.FK_ED_I = TOCEXTRADATA.I )) AND (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRINITIALINTERVIEWSCRIPT.META__RECORD_EFFECTIVE_FROM AND TRINITIALINTERVIEWSCRIPT.META__RECORD_EFFECTIVE_TO )) AND (( TRINITIALINTERVIEWSCRIPT.FK_ED_C = TOCEXTRADATA.C )) )
+models/work_tables/clm_eform_tw1.sql:220:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','trnoncompliance') }} TRNONCOMPLIANCE ON ( (( CLM_CHANGED_CHILD_CLAIM_TW1.RUN_DAY_EOD_DTS between TRNONCOMPLIANCE.META__RECORD_EFFECTIVE_FROM AND TRNONCOMPLIANCE.META__RECORD_EFFECTIVE_TO )) AND (( TRNONCOMPLIANCE.FK_ED_C = TOCEXTRADATA.C )) AND (( TRNONCOMPLIANCE.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_eform_tw1.sql:225:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_firstclntctctdcsn_tw1.sql:29:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/work_tables/clm_firstclntctctdcsn_tw1.sql:30:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( TOCCASE.C = TOLCLAIM.C_OCCASE_CLAIMCASE )) AND (( TOCCASE.I = TOLCLAIM.I_OCCASE_CLAIMCASE )) )
+models/work_tables/clm_firstclntctctdcsn_tw1.sql:31:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( TOLCLAIM.EXTCOVERDECISION = TODOMAININSTANCE_1.I ) )
+models/work_tables/clm_firstclntctctdcsn_tw1.sql:32:JOIN {{ source('timeseries_eos_finapp','todomain') }} TODOMAIN ON ( ( TODOMAININSTANCE_1.I_ODOM_INSTS = TODOMAIN.I ) )
+models/work_tables/clm_impairment_tw1.sql:88:JOIN {{ source('timeseries_pathway','impairment_injury') }} IMPAIRMENT_INJURY ON ( (( CLM_CHANGED_CLAIM_TW9_1.PWY_CASE_ID = IMPAIRMENT_INJURY.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_1.RUN_DAY_EOD_DTS between IMPAIRMENT_INJURY.META__RECORD_EFFECTIVE_FROM AND IMPAIRMENT_INJURY.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:116:JOIN {{ source('timeseries_pathway','entitlement') }} ENTITLEMENT ON ( (( CLM_CHANGED_CLAIM_TW9_2.PWY_CASE_ID = ENTITLEMENT.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_2.RUN_DAY_EOD_DTS between ENTITLEMENT.META__RECORD_EFFECTIVE_FROM AND ENTITLEMENT.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:117:JOIN {{ source('timeseries_pathway','manual_ia') }} MANUAL_IA ON ( (( ENTITLEMENT.ENTITLEMENT_ID = MANUAL_IA.ENTITLEMENT_ID )) AND (( CLM_CHANGED_CLAIM_TW9_2.RUN_DAY_EOD_DTS between MANUAL_IA.META__RECORD_EFFECTIVE_FROM AND MANUAL_IA.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:148:JOIN {{ source('timeseries_pathway','impairment_case') }} IMPAIRMENT_CASE ON ( (( CLM_CHANGED_CLAIM_TW9_3.PWY_CASE_ID = IMPAIRMENT_CASE.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_3.RUN_DAY_EOD_DTS between IMPAIRMENT_CASE.META__RECORD_EFFECTIVE_FROM AND IMPAIRMENT_CASE.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:149:JOIN {{ source('timeseries_pathway','impairment_outcome') }} IMPAIRMENT_OUTCOME ON ( (( IMPAIRMENT_CASE.IMPAIRMENT_OUTCOME_ID = IMPAIRMENT_OUTCOME.IMPAIRMENT_OUTCOME_ID )) AND (( CLM_CHANGED_CLAIM_TW9_3.RUN_DAY_EOD_DTS between IMPAIRMENT_OUTCOME.META__RECORD_EFFECTIVE_FROM AND IMPAIRMENT_OUTCOME.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:203:JOIN {{ source('timeseries_pathway','entitlement') }} ENTITLEMENT_1 ON ( (( CLM_CHANGED_CLAIM_TW9_4.PWY_CASE_ID = ENTITLEMENT_1.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_4.RUN_DAY_EOD_DTS between ENTITLEMENT_1.META__RECORD_EFFECTIVE_FROM AND ENTITLEMENT_1.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:204:JOIN {{ source('timeseries_pathway','entitlement_cost') }} ENTITLEMENT_COST ON ( (( ENTITLEMENT_COST.ENTITLEMENT_ID = ENTITLEMENT_1.ENTITLEMENT_ID )) AND (( CLM_CHANGED_CLAIM_TW9_4.RUN_DAY_EOD_DTS between ENTITLEMENT_COST.META__RECORD_EFFECTIVE_FROM AND ENTITLEMENT_COST.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:213:{{ source('timeseries_pathway','entitlement_rate') }} ENTITLEMENT_RATE
+models/work_tables/clm_impairment_tw1.sql:259:JOIN {{ source('timeseries_pathway','case_basic') }} CASE_BASIC ON ( (( CLM_CHANGED_CLAIM_TW9_5.PWY_CASE_ID = CASE_BASIC.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_5.RUN_DAY_EOD_DTS between CASE_BASIC.META__RECORD_EFFECTIVE_FROM AND CASE_BASIC.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:260:JOIN {{ source('timeseries_pathway','entitlement') }} ENTITLEMENT_2 ON ( (( CLM_CHANGED_CLAIM_TW9_5.PWY_CASE_ID = ENTITLEMENT_2.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9_5.RUN_DAY_EOD_DTS between ENTITLEMENT_2.META__RECORD_EFFECTIVE_FROM AND ENTITLEMENT_2.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw1.sql:261:JOIN {{ source('timeseries_pathway','entitlement_cost') }} ENTITLEMENT_COST_1 ON ( ( ENTITLEMENT_2.ENTITLEMENT_ID = ENTITLEMENT_COST_1.ENTITLEMENT_ID ) )
+models/work_tables/clm_impairment_tw2.sql:46:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOCCASE.META__RECORD_EFFECTIVE_FROM AND TOCCASE.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCCASE.C_OCCASE_CHILDCASES )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCCASE.I_OCCASE_CHILDCASES )) )
+models/work_tables/clm_impairment_tw2.sql:47:JOIN {{ source('timeseries_eos_finapp','tolbenefit') }} TOLBENEFIT ON ( (( TOCCASE.C = TOLBENEFIT.C_OCCASE_BENEFITCASE )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLBENEFIT.META__RECORD_EFFECTIVE_FROM AND TOLBENEFIT.META__RECORD_EFFECTIVE_TO )) AND (( TOCCASE.I = TOLBENEFIT.I_OCCASE_BENEFITCASE )) )
+models/work_tables/clm_impairment_tw2.sql:48:JOIN {{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS ON ( (( TOLBENEFIT.I = TOLCLAIMMEDICALDETAILS.I_BNFT_MEDICALDTLSFO )) AND (( TOLBENEFIT.C = TOLCLAIMMEDICALDETAILS.C_BNFT_MEDICALDTLSFO )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_FROM AND TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_impairment_tw2.sql:49:JOIN {{ source('timeseries_eos_finapp','tolmedicalimpairmentdetails') }} TOLMEDICALIMPAIRMENTDETAILS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLMEDICALIMPAIRMENTDETAILS.META__RECORD_EFFECTIVE_FROM AND TOLMEDICALIMPAIRMENTDETAILS.META__RECORD_EFFECTIVE_TO )) AND (( TOLCLAIMMEDICALDETAILS.I = TOLMEDICALIMPAIRMENTDETAILS.I_CLMMDCLD_CLAIMMEDICALD )) AND (( TOLCLAIMMEDICALDETAILS.C = TOLMEDICALIMPAIRMENTDETAILS.C_CLMMDCLD_CLAIMMEDICALD )) )
+models/work_tables/clm_impairment_tw2.sql:50:JOIN {{ source('timeseries_eos_finapp','tolmedimpairmentassessment') }} TOLMEDIMPAIRMENTASSESSMENT ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOLMEDIMPAIRMENTASSESSMENT.META__RECORD_EFFECTIVE_FROM AND TOLMEDIMPAIRMENTASSESSMENT.META__RECORD_EFFECTIVE_TO )) AND (( TOLMEDICALIMPAIRMENTDETAILS.I = TOLMEDIMPAIRMENTASSESSMENT.I_MEDIMPDT_ASSESSMENTS )) AND (( TOLMEDICALIMPAIRMENTDETAILS.C = TOLMEDIMPAIRMENTASSESSMENT.C_MEDIMPDT_ASSESSMENTS )) )
+models/work_tables/clm_impairment_tw2.sql:51:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TODOMAININSTANCE.META__RECORD_EFFECTIVE_FROM AND TODOMAININSTANCE.META__RECORD_EFFECTIVE_TO )) AND (( TODOMAININSTANCE.I = TOLMEDIMPAIRMENTASSESSMENT.STATUS )) )) LOOKUP_INPUT_SUBQUERY
+models/work_tables/clm_injury_code_eos_tw1.sql:28:{{ source('timeseries_eos_finapp','tolcodevaluelink') }} TOLCODEVALUELINK
+models/work_tables/clm_injury_code_eos_tw1.sql:29:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TOLCODEVALUELINK.BODYLOCATION = TODOMAININSTANCE.I ) )
+models/work_tables/clm_injury_code_tw1.sql:54:{{ source('timeseries_eos_finapp','tolmedicalcode') }} TOLMEDICALCODE
+models/work_tables/clm_injury_code_tw1.sql:103:{{ source('timeseries_pathway','icd_coding') }} ICD_CODING
+models/work_tables/clm_injury_code_tw1.sql:114:{{ source('timeseries_pathway','icd10_coding') }} ICD10_CODING
+models/work_tables/clm_injury_code_tw1.sql:123:{{ source('timeseries_pathway','legacy_icd_coding') }} LEGACY_ICD_CODING
+models/work_tables/clm_injury_code_tw1.sql:135:{{ source('timeseries_pathway','read_coding') }} READ_CODING
+models/work_tables/clm_injury_code_tw1.sql:141:{{ source('timeseries_pathway','legacy_read_coding') }} LEGACY_READ_CODING
+models/work_tables/clm_injury_code_tw1.sql:152:{{ source('timeseries_pathway','diagnosis') }} DIAGNOSIS
+models/work_tables/clm_injury_code_tw1.sql:160:{{ source('timeseries_pathway','injury_site') }} INJURY_SITE
+models/work_tables/clm_injury_tw1.sql:130:JOIN {{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS ON ( ( CLM_CHANGED_INJURY_TW1.CLAIM_C = TOLCLAIMMEDICALDETAILS.C_CLM_CLAIM and CLM_CHANGED_INJURY_TW1.CLAIM_I = TOLCLAIMMEDICALDETAILS.I_CLM_CLAIM and CLM_CHANGED_INJURY_TW1.RUN_DAY_EOD_DTS between TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_FROM and TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_TO and TOLCLAIMMEDICALDETAILS.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_injury_tw1.sql:131:JOIN {{ source('timeseries_eos_finapp','tolcodevaluelink') }} TOLCODEVALUELINK ON ( ( TOLCLAIMMEDICALDETAILS.I = nvl ( TOLCODEVALUELINK.I_CLMMDCLD_DIAGNOSISCODE , TOLCODEVALUELINK.I_CLMMDCLD_TREATMENTCODE ) and TOLCLAIMMEDICALDETAILS.C = nvl ( TOLCODEVALUELINK.C_CLMMDCLD_DIAGNOSISCODE , TOLCODEVALUELINK.C_CLMMDCLD_TREATMENTCODE ) and CLM_CHANGED_INJURY_TW1.RUN_DAY_EOD_DTS between TOLCODEVALUELINK.META__RECORD_EFFECTIVE_FROM and TOLCODEVALUELINK.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/clm_injury_tw1.sql:137:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_injury_tw1.sql:145:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_injury_tw1.sql:153:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_injury_tw1.sql:161:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_injury_tw1.sql:170:{{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/clm_injury_tw1.sql:177:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/clm_injury_tw1.sql:185:{{source('global','infact_ref_data_lookup_tg1')}} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/clm_injury_tw1.sql:192:{{source('global','infact_ref_data_lookup_tg1')}} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/clm_injury_tw2.sql:115:{{ source('timeseries_aes','injury') }} INJURY
+models/work_tables/clm_injury_tw2.sql:122:JOIN {{ source('timeseries_aes','case_basic') }} CASE_BASIC ON ( ( INGRP1.A_CASE_ID = CASE_BASIC.CASE_ID ) )
+models/work_tables/clm_injury_tw2.sql:130:{{ source('timeseries_aes','case_basic') }} CASE_BASIC
+models/work_tables/clm_injury_tw2.sql:143:{{ source('timeseries_aes','aedeletes') }} AEDELETES
+models/work_tables/clm_injury_tw2.sql:152:{{ source('timeseries_aes','case_other') }} CASE_OTHER
+models/work_tables/clm_injury_tw2.sql:163:JOIN {{ source('timeseries_aes','injury') }} INJURY_1 ON ( (( INGRP1.A_CASE_ID = INJURY_1.CASE_ID )) AND (( INGRP1.A_RUN_DAY_EOD_DTS between INJURY_1.META__RECORD_EFFECTIVE_FROM AND INJURY_1.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_injury_tw2.sql:235:{{ source('timeseries_pathway','diagnosis') }} DIAGNOSIS
+models/work_tables/clm_intervention_tw1.sql:24:JOIN {{ source('timeseries_eos_finapp','tolbenefit') }} TOLBENEFIT ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLBENEFIT.META__RECORD_EFFECTIVE_FROM AND TOLBENEFIT.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TOLBENEFIT.C_CLM_BENEFITS )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TOLBENEFIT.I_CLM_BENEFITS )) )
+models/work_tables/clm_intervention_tw1.sql:25:JOIN {{ source('timeseries_eos_finapp','tolservicesholder') }} TOLSERVICESHOLDER ON ( (( TOLBENEFIT.C = TOLSERVICESHOLDER.C_BNFT_SERVICELINK )) AND (( TOLBENEFIT.I = TOLSERVICESHOLDER.I_BNFT_SERVICELINK )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLSERVICESHOLDER.META__RECORD_EFFECTIVE_FROM AND TOLSERVICESHOLDER.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_intervention_tw1.sql:26:JOIN {{ source('timeseries_eos_finapp','taccintervention') }} TACCINTERVENTION ON ( (( TOLSERVICESHOLDER.I = TACCINTERVENTION.I_SERVICELINK )) AND (( TOLSERVICESHOLDER.C = TACCINTERVENTION.C_SERVICELINK )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCINTERVENTION.META__RECORD_EFFECTIVE_FROM AND TACCINTERVENTION.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_intervention_tw1.sql:27:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TODOMAININSTANCE.I = TACCINTERVENTION.STATUS ) )
+models/work_tables/clm_medical_certificate_tw1.sql:55:JOIN {{ source('timeseries_pathway','incapacity_period') }} INCAPACITY_PERIOD ON ( (( CLM_CHANGED_CLAIM_TW9.PWY_CASE_ID = INCAPACITY_PERIOD.CASE_ID )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between INCAPACITY_PERIOD.META__RECORD_EFFECTIVE_FROM AND INCAPACITY_PERIOD.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_medical_certificate_tw1.sql:70:JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TOCEXTRADATA.META__RECORD_EFFECTIVE_FROM AND TOCEXTRADATA.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCEXTRADATA.C_OCCASE_ASSOCIATEDDOC )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCEXTRADATA.I_OCCASE_ASSOCIATEDDOC )) )
+models/work_tables/clm_medical_certificate_tw1.sql:71:JOIN {{ source('timeseries_eos_finapp','trmedicalincapacity') }} TRMEDICALINCAPACITY ON ( (( TOCEXTRADATA.C = TRMEDICALINCAPACITY.FK_ED_C )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TRMEDICALINCAPACITY.META__RECORD_EFFECTIVE_FROM AND TRMEDICALINCAPACITY.META__RECORD_EFFECTIVE_TO )) AND (( TOCEXTRADATA.I = TRMEDICALINCAPACITY.FK_ED_I )) )
+models/work_tables/clm_medical_certificate_tw1.sql:72:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS BETWEEN TODOMAININSTANCE.META__RECORD_EFFECTIVE_FROM AND TODOMAININSTANCE.META__RECORD_EFFECTIVE_TO )) AND (( TRMEDICALINCAPACITY.INCAPACITYPERIODTYPE = TODOMAININSTANCE.I or TRMEDICALINCAPACITY.INCAPACITYPERIODTYPE2 = TODOMAININSTANCE.I or TRMEDICALINCAPACITY.INCAPACITYPERIODTYPE3 = TODOMAININSTANCE.I )) )
+models/work_tables/clm_medical_detail_tw1.sql:26:JOIN {{ source('timeseries_eos_finapp','tolclaimmedicaldetails') }} TOLCLAIMMEDICALDETAILS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_FROM AND TOLCLAIMMEDICALDETAILS.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TOLCLAIMMEDICALDETAILS.C_CLM_CLAIM )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TOLCLAIMMEDICALDETAILS.I_CLM_CLAIM )) )
+models/work_tables/clm_registering_provider_tw1.sql:38:JOIN {{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCPARTYCASEROLE.META__RECORD_EFFECTIVE_FROM AND TOCPARTYCASEROLE.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TOCPARTYCASEROLE.STARTDATE AND TOCPARTYCASEROLE.ENDDATE )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_I = TOCPARTYCASEROLE.I_OCCASE_ROLES )) AND (( CLM_CHANGED_CLAIM_TW9.CASE_C = TOCPARTYCASEROLE.C_OCCASE_ROLES )) )
+models/work_tables/clm_registering_provider_tw1.sql:39:JOIN {{ source('timeseries_eos_finapp','toccasetyperole') }} TOCCASETYPEROLE ON ( (( TOCPARTYCASEROLE.C_OCCASETR_IMPLEMENTEDRO = TOCCASETYPEROLE.C )) AND (( TOCPARTYCASEROLE.I_OCCASETR_IMPLEMENTEDRO = TOCCASETYPEROLE.I )) )
+models/work_tables/clm_registering_provider_tw1.sql:45:{{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION
+models/work_tables/clm_registering_provider_tw1.sql:54:{{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/clm_registering_provider_tw1.sql:62:{{ source('timeseries_mfp','provider') }} PROVIDER
+models/work_tables/clm_rehab_case_tw1.sql:136:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/work_tables/clm_rehab_case_tw1.sql:137:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_PARENT ON ( ( ( TOCCASE.C_OCCASE_CHILDCASES = TOCCASE_PARENT.C And TOCCASE.I_OCCASE_CHILDCASES = TOCCASE_PARENT.I ) ) )
+models/work_tables/clm_rehab_case_tw1.sql:148:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE_ACC45
+models/work_tables/clm_rehab_case_tw1.sql:166:{{ source('timeseries_eos_finapp','tocprocessinstance') }} TOCPROCESSINSTANCE
+models/work_tables/clm_rehabilitation_path_tw1.sql:49:JOIN {{ source('timeseries_eos_finapp','taccrehabilitationpath') }} TACCREHABILITATIONPATH ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCREHABILITATIONPATH.META__RECORD_EFFECTIVE_FROM AND TACCREHABILITATIONPATH.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TACCREHABILITATIONPATH.C_CLM_REHABPA )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TACCREHABILITATIONPATH.I_CLM_REHABPA )) )
+models/work_tables/clm_rehabilitation_path_tw1.sql:50:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TACCREHABILITATIONPATH.ADDITIONALDET = TODOMAININSTANCE.I and TODOMAININSTANCE.META__IS_CURRENT = 'Y' and TODOMAININSTANCE.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_rehabilitation_path_tw1.sql:51:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( TACCREHABILITATIONPATH.TARGET = TODOMAININSTANCE_1.I and TODOMAININSTANCE_1.META__IS_CURRENT = 'Y' and TODOMAININSTANCE_1.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_rehabilitation_path_tw1.sql:52:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_2 ON ( ( ( TACCREHABILITATIONPATH.VOCREHABRESUL = TODOMAININSTANCE_2.I and TODOMAININSTANCE_2.META__IS_CURRENT = 'Y' and TODOMAININSTANCE_2.META__IS_DELETED = 'N' ) ) )
+models/work_tables/clm_returntowork_tw1.sql:50:{{ source('timeseries_eos_finapp','trmedicalincapacity') }} TRMEDICALINCAPACITY
+models/work_tables/clm_returntowork_tw1.sql:51:JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( (( TRMEDICALINCAPACITY.FK_ED_C = TOCEXTRADATA.C )) AND (( TRMEDICALINCAPACITY.FK_ED_I = TOCEXTRADATA.I )) )
+models/work_tables/clm_returntowork_tw1.sql:52:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOCEXTRADATA.C_OCCASE_ASSOCIATEDDOC = TOCCASE.C )) AND (( TOCEXTRADATA.I_OCCASE_ASSOCIATEDDOC = TOCCASE.I )) )
+models/work_tables/clm_returntowork_tw1.sql:57:{{ source('timeseries_eos_finapp','trmedicalincapacity') }}  TRMEDICALINCAPACITY
+models/work_tables/clm_serious_injury_tw1.sql:78:JOIN {{ source('timeseries_eos_finapp','taccclaimseriousinjurydetails') }} TACCCLAIMSERIOUSINJURYDETAILS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCCLAIMSERIOUSINJURYDETAILS.META__RECORD_EFFECTIVE_FROM AND TACCCLAIMSERIOUSINJURYDETAILS.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TACCCLAIMSERIOUSINJURYDETAILS.C_OLCLAIM )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TACCCLAIMSERIOUSINJURYDETAILS.I_OLCLAIM )) )
+models/work_tables/clm_serious_injury_tw1.sql:79:JOIN {{ source('timeseries_eos_finapp','taccsiclinicaldetails') }} TACCSICLINICALDETAILS ON ( ( TACCCLAIMSERIOUSINJURYDETAILS.C = TACCSICLINICALDETAILS.C_CLMSIDTL_CLAIMSERIOUSI and TACCCLAIMSERIOUSINJURYDETAILS.I = TACCSICLINICALDETAILS.I_CLMSIDTL_CLAIMSERIOUSI and CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCSICLINICALDETAILS.META__RECORD_EFFECTIVE_FROM and TACCSICLINICALDETAILS.META__RECORD_EFFECTIVE_TO and TACCSICLINICALDETAILS.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_serious_injury_tw1.sql:80:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TACCSICLINICALDETAILS.SIPROFILE = TODOMAININSTANCE.I and TODOMAININSTANCE.META__IS_CURRENT = 'Y' and TODOMAININSTANCE.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_serious_injury_tw1.sql:81:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_1 ON ( ( TACCSICLINICALDETAILS.CLAIM1SEGMENT = TODOMAININSTANCE_1.I and TODOMAININSTANCE_1.META__IS_CURRENT = 'Y' and TODOMAININSTANCE_1.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_serious_injury_tw1.sql:82:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_2 ON ( ( TACCSICLINICALDETAILS.CLAIM2SEGMENT = TODOMAININSTANCE_2.I and TODOMAININSTANCE_2.META__IS_CURRENT = 'Y' and TODOMAININSTANCE_2.META__IS_DELETED = 'N' ) )
+models/work_tables/clm_serious_injury_tw1.sql:83:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE_3 ON ( ( ( TACCSICLINICALDETAILS.EXTREASON = TODOMAININSTANCE_3.I and TODOMAININSTANCE_3.META__IS_CURRENT = 'Y' and TODOMAININSTANCE_3.META__IS_DELETED = 'N' ) ) )
+models/work_tables/clm_treatment_injury_tw1.sql:36:JOIN {{ source('timeseries_eos_finapp','taccclaimtreatmentdetails') }} TACCCLAIMTREATMENTDETAILS ON ( (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCCLAIMTREATMENTDETAILS.META__RECORD_EFFECTIVE_FROM AND TACCCLAIMTREATMENTDETAILS.META__RECORD_EFFECTIVE_TO )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_C = TACCCLAIMTREATMENTDETAILS.C_OLCLAIM )) AND (( CLM_CHANGED_CLAIM_TW9.CLAIM_I = TACCCLAIMTREATMENTDETAILS.I_OLCLAIM )) )
+models/work_tables/clm_treatment_injury_tw1.sql:37:JOIN {{ source('timeseries_eos_finapp','tacctreatmentcontext') }} TACCTREATMENTCONTEXT ON ( (( TACCCLAIMTREATMENTDETAILS.C_TRTCTXT_TREATMENTCONT = TACCTREATMENTCONTEXT.C )) AND (( TACCCLAIMTREATMENTDETAILS.I_TRTCTXT_TREATMENTCONT = TACCTREATMENTCONTEXT.I )) AND (( CLM_CHANGED_CLAIM_TW9.RUN_DAY_EOD_DTS between TACCTREATMENTCONTEXT.META__RECORD_EFFECTIVE_FROM AND TACCTREATMENTCONTEXT.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/clm_treatment_injury_tw1.sql:38:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TACCTREATMENTCONTEXT.CLAIMSTREAM = TODOMAININSTANCE.I ) )
+models/work_tables/cust_feedback_case_process_tw1.sql:40:                        THEN (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdra WHERE trunc(cdra.day_dte,'day') > trunc(workstage.adm_source_modified_dts,'day') and trunc(cdra.day_dte,'day') <= trunc(workstage.prevstagedts,'day') and cdra.business_day_ind = 'Y')
+models/work_tables/cust_feedback_case_process_tw1.sql:41:                    ELSE (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdar WHERE trunc(cdar.day_dte,'day') > trunc(workstage.prevstagedts,'day') and trunc(cdar.day_dte,'day') <= trunc(workstage.adm_source_modified_dts,'day') and cdar.business_day_ind = 'Y')
+models/work_tables/cust_feedback_case_process_tw1.sql:53:                        THEN (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdra WHERE trunc(cdra.day_dte,'day') > trunc(workstage.nextstagedts,'day') and trunc(cdra.day_dte,'day') <= trunc(workstage.adm_source_modified_dts,'day') and cdra.business_day_ind = 'Y')
+models/work_tables/cust_feedback_case_process_tw1.sql:54:                    ELSE (SELECT IFNULL(COUNT(1),-1) FROM {{source('presentation','cd_date_td1')}} cdar WHERE trunc(cdar.day_dte,'day') > trunc(workstage.adm_source_modified_dts,'day') and trunc(cdar.day_dte,'day') <= trunc(workstage.nextstagedts,'day') and cdar.business_day_ind = 'Y')
+models/work_tables/cust_feedback_case_process_tw1.sql:60:FROM {{source('timeseries_eos_finapp','toccase')}} c
+models/work_tables/cust_feedback_case_process_tw1.sql:61:INNER JOIN {{source('timeseries_eos_finapp','tocprocessinstance')}} pi
+models/work_tables/cust_feedback_case_process_tw1.sql:68:INNER JOIN {{source('timeseries_eos_finapp','tocprocesstypeversion')}} ptv
+models/work_tables/cust_feedback_case_process_tw1.sql:118:				FROM {{source('timeseries_eos_finapp','toccase')}} c
+models/work_tables/cust_feedback_case_process_tw1.sql:119:				INNER JOIN {{source('timeseries_eos_finapp','tocprocessinstance')}} pi
+models/work_tables/cust_feedback_case_process_tw1.sql:126:				INNER JOIN {{source('timeseries_eos_finapp','tocprocesstypeversion')}} ptv
+models/work_tables/cust_feedback_detail_tw1.sql:156:{{ source('timeseries_eos_finapp','trfeedbackdetails') }} TRFEEDBACKDETAILS
+models/work_tables/cust_feedback_detail_tw1.sql:157:JOIN {{ source('timeseries_eos_finapp','tocextradata') }} TOCEXTRADATA ON ( ( ( TRFEEDBACKDETAILS.FK_ED_C = TOCEXTRADATA.C AND TRFEEDBACKDETAILS.FK_ED_I = TOCEXTRADATA.I ) ) )
+models/work_tables/cust_feedback_detail_tw1.sql:158:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( ( ( TOCEXTRADATA.C_OCCASE_ASSOCIATEDDOC = TOCCASE.C AND TOCEXTRADATA.I_OCCASE_ASSOCIATEDDOC = TOCCASE.I ) ) )
+models/work_tables/cust_feedback_detail_tw1.sql:164:{{ source('timeseries_eos_finsec','tosuser') }} TOSUSER
+models/work_tables/issc_status_tw1.sql:363:JOIN {{source('presentation','po_line_status_td1') }} PO_LINE_STATUS_TD1 ON ( ( ( PO_LINE_FACT_TF1.PO_LINE_STATUS_SK = PO_LINE_STATUS_TD1.PO_LINE_STATUS_SK And PO_LINE_STATUS_TD1.PO_STATUS_NME = ($C2_9_C0 ) And PO_LINE_STATUS_TD1.PO_LINE_STATUS_NME = ($C2_10_C5 ) ) ) )
+models/work_tables/issc_status_tw1.sql:367:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1 ON ( ( ( CD_CLAIM_REHAB_ACTION_TD1.REHAB_ACTION_TYPE_NME = INFACT_REF_DATA_LOOKUP_TG1.SOURCE_ATTRIBUTE_1_NME And CD_SERVICE_ITEM_TD1.SERVICE_ITEM_CDE = INFACT_REF_DATA_LOOKUP_TG1.SOURCE_ATTRIBUTE_1_VALUE ) ) )
+models/work_tables/mfp_party_location_tw1.sql:56:{{ source('timeseries_mfp','facility') }} FACILITY
+models/work_tables/mfp_party_location_tw1.sql:65:{{ source('timeseries_mfp','provider') }} PROVIDER
+models/work_tables/mfp_party_location_tw1.sql:74:{{ source('timeseries_mfp','vendor') }} VENDOR
+models/work_tables/mfp_party_location_tw1.sql:83:{{ source('timeseries_mfp','mfp_location_type') }} MFP_LOCATION_TYPE
+models/work_tables/mfp_party_location_tw1.sql:121:{{ source('timeseries_mfp','mfp_address_detail') }} MFP_ADDRESS_DETAIL
+models/work_tables/payment_event_tw1.sql:231:{{ source('timeseries_eos_finapp','tolpaymentoutevent') }} TOLPAYMENTOUTEVENT
+models/work_tables/payment_event_tw1.sql:232:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( (( TOLPAYMENTOUTEVENT.I_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.I )) AND (( TOLPAYMENTOUTEVENT.C_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.C )) )
+models/work_tables/payment_event_tw1.sql:277:{{ source('timeseries_eos_finapp','tolpaymentoutevent') }} TOLPAYMENTOUTEVENT
+models/work_tables/payment_event_tw1.sql:278:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( ( ( TOLPAYMENTOUTEVENT.I_PYMNTEIF_CANCELLATIONP = TOLPAYMENTEVENTINTERFACE.I and TOLPAYMENTOUTEVENT.C_PYMNTEIF_CANCELLATIONP = TOLPAYMENTEVENTINTERFACE.C ) ) )
+models/work_tables/payment_event_tw1.sql:324:{{ source('timeseries_eos_finapp','tolpaymentoutevent') }} TOLPAYMENTOUTEVENT
+models/work_tables/payment_event_tw1.sql:325:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( (( TOLPAYMENTOUTEVENT.I_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.I and TOLPAYMENTOUTEVENT.C_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.C and TOLPAYMENTEVENTINTERFACE.STATUS = 'Cancelled' ) ) )
+models/work_tables/payment_event_tw1.sql:371:{{ source('timeseries_eos_finapp','tolrequestpaymentevent') }} TOLREQUESTPAYMENTEVENT
+models/work_tables/payment_event_tw1.sql:372:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( (( TOLREQUESTPAYMENTEVENT.I_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.I )) AND (( TOLREQUESTPAYMENTEVENT.C_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.C )) )
+models/work_tables/payment_event_tw1.sql:417:{{ source('timeseries_eos_finapp','tolrequestpaymentevent') }} TOLREQUESTPAYMENTEVENT
+models/work_tables/payment_event_tw1.sql:418:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( ( ( TOLREQUESTPAYMENTEVENT.I_PYMNTEIF_CANCELLATIONP = TOLPAYMENTEVENTINTERFACE.I and TOLREQUESTPAYMENTEVENT.C_PYMNTEIF_CANCELLATIONP = TOLPAYMENTEVENTINTERFACE.C )  ) )
+models/work_tables/payment_event_tw1.sql:464:{{ source('timeseries_eos_finapp','tolrequestpaymentevent') }} TOLREQUESTPAYMENTEVENT
+models/work_tables/payment_event_tw1.sql:465:JOIN {{ source('timeseries_eos_finapp','tolpaymenteventinterface') }} TOLPAYMENTEVENTINTERFACE ON ( ( ( TOLREQUESTPAYMENTEVENT.I_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.I and TOLREQUESTPAYMENTEVENT.C_PYMNTEIF_PAYMENTEVENTI = TOLPAYMENTEVENTINTERFACE.C and TOLPAYMENTEVENTINTERFACE.STATUS = 'Cancelled' ) ) )
+models/work_tables/payment_event_tw1.sql:471:JOIN {{ source('timeseries_eos_finapp','tolpaymentlinegrpforcase') }} TOLPAYMENTLINEGRPFORCASE ON ( (( INGRP1.A_C = TOLPAYMENTLINEGRPFORCASE.C_PYMNTEIF_PAYMENTLINEGR )) AND (( INGRP1.A_I = TOLPAYMENTLINEGRPFORCASE.I_PYMNTEIF_PAYMENTLINEGR )) )
+models/work_tables/payment_event_tw2.sql:163:FROM {{ source('timeseries_eos_finapp','toccase') }} TOCCASE
+models/work_tables/payment_event_tw2.sql:165:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_1 ON ( (( TOCCASE_1.C = TOCCASE.C_OCCASE_CHILDCASES )) AND (( TOCCASE_1.I = TOCCASE.I_OCCASE_CHILDCASES )) )
+models/work_tables/payment_event_tw2.sql:166:JOIN {{ source('timeseries_eos_finapp','tolclaimdetailsforint') }} TOLCLAIMDETAILSFORINT ON ( ( TOLCLAIMDETAILSFORINT.I = PAYMENT_EVENT_TW1.I_CASDTLPI_CASEDETAILSFO ) )
+models/work_tables/payment_event_tw2.sql:179:FROM {{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE
+models/work_tables/payment_event_tw2.sql:183:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( TOLCLAIM.C_OCCASE_CLAIMCASE = TOCCASE_1.C )) AND (( TOLCLAIM.I_OCCASE_CLAIMCASE = TOCCASE_1.I )) )
+models/work_tables/payment_event_tw2.sql:192:FROM {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/payment_event_tw2.sql:204:FROM {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION
+models/work_tables/payment_event_tw2.sql:212:FROM {{ source('timeseries_eos_finsec','tosuser') }} TOSUSER
+models/work_tables/payment_event_tw2.sql:220:FROM {{ source('timeseries_eos_finsec','tosuser') }} TOSUSER
+models/work_tables/payment_event_tw2.sql:240:FROM {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON
+models/work_tables/payment_event_tw2.sql:254:FROM {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION
+models/work_tables/payment_event_tw3.sql:62:{{ source('timeseries_eos_finapp','tolfixedamountincreaseinstr') }} TOLFIXEDAMOUNTINCREASEINSTR
+models/work_tables/payment_event_tw3.sql:63:JOIN {{ source('timeseries_eos_finapp','tollocalmoneyamount') }} TOLLOCALMONEYAMOUNT ON ( (( TOLFIXEDAMOUNTINCREASEINSTR.C_LCLMNYAM_INCREASEINSTR = TOLLOCALMONEYAMOUNT.C )) AND (( TOLFIXEDAMOUNTINCREASEINSTR.I_LCLMNYAM_INCREASEINSTR = TOLLOCALMONEYAMOUNT.I )) )
+models/work_tables/payment_event_tw3.sql:64:JOIN {{ source('timeseries_eos_finapp','tolallocationinstruction') }} TOLALLOCATIONINSTRUCTION ON ( (( TOLLOCALMONEYAMOUNT.C = TOLALLOCATIONINSTRUCTION.C_LCLMNYAM_ALLOCATIONAMO )) AND (( TOLLOCALMONEYAMOUNT.I = TOLALLOCATIONINSTRUCTION.I_LCLMNYAM_ALLOCATIONAMO )) )
+models/work_tables/payment_event_tw3.sql:65:JOIN {{ source('timeseries_eos_finapp','rpymntvntallctninallocationins') }} RPYMNTVNTALLCTNINALLOCATIONINS ON ( (( TOLALLOCATIONINSTRUCTION.I = RPYMNTVNTALLCTNINALLOCATIONINS.I_TO )) AND (( TOLALLOCATIONINSTRUCTION.C = RPYMNTVNTALLCTNINALLOCATIONINS.C_TO )) )
+models/work_tables/payment_event_tw3.sql:73:{{ source('timeseries_eos_finapp','tolpaymentoutevent') }} TOLPAYMENTOUTEVENT
+models/work_tables/payment_event_tw3.sql:83:{{ source('timeseries_eos_finapp','tolrequestpaymentevent') }} TOLREQUESTPAYMENTEVENT
+models/work_tables/payment_event_tw3.sql:97:{{ source('timeseries_eos_finapp','tolpaymentline') }} TOLPAYMENTLINE
+models/work_tables/payment_event_tw3.sql:98:JOIN {{ source('timeseries_eos_finapp','tolpaymentlinegrpfordueevent') }} TOLPAYMENTLINEGRPFORDUEEVENT ON ( (( TOLPAYMENTLINE.C_PLNGRDE_PAYMENTLINES = TOLPAYMENTLINEGRPFORDUEEVENT.C )) AND (( TOLPAYMENTLINE.I_PLNGRDE_PAYMENTLINES = TOLPAYMENTLINEGRPFORDUEEVENT.I )) )
+models/work_tables/payment_event_tw3.sql:99:JOIN {{ source('timeseries_eos_finapp','tolpaymentdetailsforint') }} TOLPAYMENTDETAILSFORINT ON ( (( TOLPAYMENTLINEGRPFORDUEEVENT.C_PYDDTLPI_PAYMENTDUEDET = TOLPAYMENTDETAILSFORINT.C )) AND (( TOLPAYMENTLINEGRPFORDUEEVENT.I_PYDDTLPI_PAYMENTDUEDET = TOLPAYMENTDETAILSFORINT.I )) )
+models/work_tables/pmt_invoice_service_line_tw1.sql:35:JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE ON ( ( SERVICE_LINE_PAYMENT_TW1.SCHEDULE_LINE_ID = SCHEDULE_LINE.SCHEDULE_LINE_ID ) )
+models/work_tables/pmt_payment_item_tw1.sql:626:                                                {{ source('timeseries_mfp','contract') }} CONTRACT
+models/work_tables/pmt_payment_item_tw1.sql:628:                                                LEFT OUTER JOIN {{ source('timeseries_mfp','contract') }} CONTRACT_1 ON ( (( (CONTRACT.META__RECORD_EFFECTIVE_TO + INTERVAL '000001 MICROSECOND' ) = CONTRACT_1.META__RECORD_EFFECTIVE_FROM )) AND (( CONTRACT.CONTRACT_ID = CONTRACT_1.CONTRACT_ID )) )
+models/work_tables/pmt_payment_item_tw1.sql:759:                LEFT OUTER JOIN {{ source('timeseries_mfp','contract') }} CONTRACT_2 
+models/work_tables/pmt_payment_item_tw1.sql:815:                        {{ source('presentation','pmt_payment_item_tu1') }} PMT_PAYMENT_ITEM_TU1_INPUT
+models/work_tables/pmt_payment_item_tw2.sql:478:{{ source('presentation','pmt_payment_item_tu1') }} PMT_PAYMENT_ITEM_TU1_INPUT
+models/work_tables/pmt_payment_item_tw2.sql:657:{{ source('timeseries_pathway','payroll_issue_trans') }} PAYROLL_ISSUE_TRANS_TE1_1
+models/work_tables/pmt_payment_item_tw2.sql:691:{{ source('timeseries_pathway','payroll_issue_trans') }} PAYROLL_ISSUE_TRANS_TE1_2
+models/work_tables/pmt_payment_item_tw2.sql:715:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE_1
+models/work_tables/pmt_payment_item_tw2.sql:716:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM_1 ON ( (( TOLCLAIM_1.META__RECORD_EFFECTIVE_FROM between TOCCASE_1.META__RECORD_EFFECTIVE_FROM AND TOCCASE_1.META__RECORD_EFFECTIVE_TO )) AND (( TOCCASE_1.C = TOLCLAIM_1.C_OCCASE_CLAIMCASE )) AND (( TOCCASE_1.I = TOLCLAIM_1.I_OCCASE_CLAIMCASE )) )
+models/work_tables/pmt_payment_item_tw2.sql:717:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM_PRIOR ON ( ( ( TOLCLAIM_PRIOR.C = TOLCLAIM_1.C and TOLCLAIM_PRIOR.I = TOLCLAIM_1.I and (TOLCLAIM_PRIOR.META__RECORD_EFFECTIVE_FROM + INTERVAL '000001 MICROSECOND' ) = TOLCLAIM_1.META__RECORD_EFFECTIVE_FROM ) ) )
+models/work_tables/pmt_payment_item_tw2.sql:723:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE_2 ON ( (( INGRP1.CLAIM_BK = TOCCASE_2.CASENUMBER )) AND (( INGRP1.PAYMENT_EOD_DTE between TOCCASE_2.META__RECORD_EFFECTIVE_FROM AND TOCCASE_2.META__RECORD_EFFECTIVE_TO )) )
+models/work_tables/pmt_payment_item_tw2.sql:724:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM_2 ON ( (( INGRP1.PAYMENT_EOD_DTE between TOLCLAIM_2.META__RECORD_EFFECTIVE_FROM AND TOLCLAIM_2.META__RECORD_EFFECTIVE_TO )) AND (( TOLCLAIM_2.I_OCCASE_CLAIMCASE = TOCCASE_2.I )) AND (( TOLCLAIM_2.C_OCCASE_CLAIMCASE = TOCCASE_2.C )) )
+models/work_tables/pmt_payment_item_tw2.sql:725:LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_1 ON ( (( INGRP1.PAYMENT_EOD_DTE between INFACT_REF_DATA_LOOKUP_TG1_1.FROM_DTE AND INFACT_REF_DATA_LOOKUP_TG1_1.TO_DTE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_1.TARGET_ATTRIBUTE_NME = INGRP1.CNST_REF_TARGET_ATTR_NME1 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_1.SOURCE_SYSTEM_CDE = INGRP1.CNST_REF_SOURCE_SYSTEM_CDE1 )) AND (( TRY_CAST(INFACT_REF_DATA_LOOKUP_TG1_1.SOURCE_ATTRIBUTE_1_VALUE as NUMBER(10)) = INGRP1.GL_ACCOUNT_CDE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_1.SOURCE_ATTRIBUTE_1_NME = INGRP1.CNST_REF_SOURCE_ATTR1_NME1 )) )
+models/work_tables/pmt_payment_item_tw2.sql:726:LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_2 ON ( (( TRY_CAST(INFACT_REF_DATA_LOOKUP_TG1_2.SOURCE_ATTRIBUTE_1_VALUE as NUMBER(10)) = INGRP1.GL_ACCOUNT_CDE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_2.SOURCE_ATTRIBUTE_1_NME = INGRP1.CNST_REF_SOURCE_ATTR1_NME2 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_2.SOURCE_SYSTEM_CDE = INGRP1.CNST_REF_SOURCE_SYSTEM_CDE1 )) AND (( INGRP1.PAYMENT_EOD_DTE between INFACT_REF_DATA_LOOKUP_TG1_2.FROM_DTE AND INFACT_REF_DATA_LOOKUP_TG1_2.TO_DTE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_2.TARGET_ATTRIBUTE_VALUE = INGRP1.CNST_YES_CDE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_2.TARGET_ATTRIBUTE_NME = INGRP1.CNST_REF_TARGET_ATTR_NME1 )) )
+models/work_tables/pmt_payment_item_tw2.sql:727:LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_3 ON ( (( INGRP1.PAYMENT_EOD_DTE between INFACT_REF_DATA_LOOKUP_TG1_3.FROM_DTE AND INFACT_REF_DATA_LOOKUP_TG1_3.TO_DTE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_3.TARGET_ATTRIBUTE_NME = INGRP1.CNST_REF_TARGET_ATTR_NME2 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_3.SOURCE_ATTRIBUTE_1_VALUE = INGRP1.CNST_REF_SOURCE_ATTR1_NME3 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_3.SOURCE_ATTRIBUTE_1_NME = INGRP1.CNST_REF_SOURCE_ATTR1_NME3 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_3.SOURCE_SYSTEM_CDE = INGRP1.CNST_REF_SOURCE_SYSTEM_CDE2 )) )
+models/work_tables/pmt_payment_item_tw2.sql:728:LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_4 ON ( (( INFACT_REF_DATA_LOOKUP_TG1_4.SOURCE_SYSTEM_CDE = INGRP1.CNST_REF_SOURCE_SYSTEM_CDE1 )) AND (( TRY_CAST(INFACT_REF_DATA_LOOKUP_TG1_4.SOURCE_ATTRIBUTE_1_VALUE as NUMBER(10)) = INGRP1.GL_ACCOUNT_CDE )) AND (( INGRP1.PAYMENT_EOD_DTE between INFACT_REF_DATA_LOOKUP_TG1_4.FROM_DTE AND INFACT_REF_DATA_LOOKUP_TG1_4.TO_DTE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_4.SOURCE_ATTRIBUTE_1_NME = INGRP1.CNST_REF_SOURCE_ATTR1_NME2 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_4.SOURCE_ATTRIBUTE_2_VALUE = to_char ( TOLCLAIM_2.FUNDCODE ) )) AND (( INFACT_REF_DATA_LOOKUP_TG1_4.SOURCE_ATTRIBUTE_2_NME = INGRP1.CNST_REF_SOURCE_ATTR2_NME1 )) AND (( INFACT_REF_DATA_LOOKUP_TG1_4.TARGET_ATTRIBUTE_VALUE = INGRP1.CNST_NO_CDE )) AND (( INFACT_REF_DATA_LOOKUP_TG1_4.TARGET_ATTRIBUTE_NME = INGRP1.CNST_REF_TARGET_ATTR_NME1 )) )
+models/work_tables/pmt_payment_item_tw2.sql:729:LEFT OUTER JOIN {{ source('timeseries_pathway','account_code') }} ACCOUNT_CODE ON ( (( INGRP1.RUN_EOD_DTS between ACCOUNT_CODE.META__RECORD_EFFECTIVE_FROM AND ACCOUNT_CODE.META__RECORD_EFFECTIVE_TO )) AND (( to_char ( ACCOUNT_CODE.ACCOUNT_CODE ) = INGRP1.GL_ACCOUNT_CDE )) )
+models/work_tables/pmt_payment_item_tw2.sql:730:LEFT OUTER JOIN {{ source('timeseries_pathway','manual_reimbursement') }} MANUAL_REIMBURSEMENT ON ( (( INGRP1.PAYMENT_EOD_DTE between MANUAL_REIMBURSEMENT.META__RECORD_EFFECTIVE_FROM AND MANUAL_REIMBURSEMENT.META__RECORD_EFFECTIVE_TO )) AND (( MANUAL_REIMBURSEMENT.ENTITLEMENT_TYPE_PERIOD_ID = INGRP1.ENTITLEMENT_TYPE_PERIOD_ID )) )
+models/work_tables/pmt_payment_item_tw3.sql:21:,"SET C2_15_C4 = (SELECT TO_NUMBER(TARGET_ATTRIBUTE_VALUE) FROM {{ source('global','infact_ref_data_lookup_tg1') }} WHERE SOURCE_SYSTEM_CDE = 'PROCESS_PARAMETER' AND SOURCE_ATTRIBUTE_1_NME = 'INPUT_PARAMETER_NAME' AND SOURCE_ATTRIBUTE_1_VALUE = 'AES_PAYMENT_OFFICE' AND CURRENT_TIMESTAMP BETWEEN FROM_DTE AND TO_DTE) -- ATTRIBUTE CONSTANT.OUTGRP1.CNST_PAYMENT_OFFICE_NBK"
+models/work_tables/pmt_payment_item_tw3.sql:295:{{ source('presentation','pmt_payment_item_tu1') }} PMT_PAYMENT_ITEM_TU1_INPUT
+models/work_tables/pmt_payment_item_tw3.sql:392:                    {{ source('timeseries_aes','employer_cost') }} EMPLOYER_COST_1
+models/work_tables/pmt_payment_item_tw3.sql:404:                {{ source('timeseries_aes','aedeletes') }} AEDELETES
+models/work_tables/pmt_payment_item_tw3.sql:410:    JOIN {{ source('timeseries_aes','case_basic') }} CASE_BASIC 
+models/work_tables/pmt_payment_item_tw3.sql:428:                    {{ source('timeseries_aes','employer_cost') }} EMPLOYER_COST_2
+models/work_tables/pmt_payment_item_tw3.sql:436:    LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_1 
+models/work_tables/pmt_payment_item_tw3.sql:442:    LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_GSTACCT 
+models/work_tables/pmt_payment_item_tw3.sql:447:    LEFT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_1_1 
+models/work_tables/pmt_payment_item_tw4.sql:376:JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1_1 
+models/work_tables/pmt_payment_item_tw4.sql:394:    FROM {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/pmt_payment_item_tw4.sql:412:{{ source('timeseries_eos_finapp','tocpartycaserole') }} TOCPARTYCASEROLE
+models/work_tables/pmt_payment_item_tw4.sql:429:{{ source('timeseries_eos_finapp','toltaxroledataset') }} TOLTAXROLEDATASET
+models/work_tables/pmt_payment_item_tw4.sql:441:{{ source('timeseries_eos_finapp','tolpaymentoutevent') }} TOLPAYMENTOUTEVENT
+models/work_tables/pmt_payment_item_tw4.sql:453:{{ source('timeseries_eos_finapp','tolrequestpaymentevent') }} TOLREQUESTPAYMENTEVENT
+models/work_tables/pmt_payment_item_tw4.sql:471:{{ source('timeseries_eos_finapp','toltaxtypedetails') }} TOLTAXTYPEDETAILS
+models/work_tables/pmt_payment_item_tw4.sql:484:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/pmt_payment_item_tw4.sql:493:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/pmt_payment_item_tw4.sql:500:RIGHT OUTER JOIN {{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG2 
+models/work_tables/pmt_payment_item_tw4.sql:545:{{ source('presentation','pmt_payment_item_tu1') }} PMT_PAYMENT_ITEM_TU1
+models/work_tables/po_header_fact_tw1.sql:53:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/work_tables/po_header_fact_tw1.sql:54:JOIN {{ source('timeseries_eos_finapp','tolservicesholder') }} TOLSERVICESHOLDER ON ( (( TOLAPPROVALGROUP.C_SRVCLINK_APPROVALGROUP = TOLSERVICESHOLDER.C )) AND (( TOLAPPROVALGROUP.I_SRVCLINK_APPROVALGROUP = TOLSERVICESHOLDER.I )) )
+models/work_tables/po_header_fact_tw1.sql:60:{{ source('timeseries_eos_finapp','taccpurchaseorderparty') }} TACCPURCHASEORDERPARTY
+models/work_tables/po_header_fact_tw2.sql:37:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/work_tables/po_header_fact_tw2.sql:38:JOIN {{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION ON ( (( TOLAPPROVALGROUP.C = TOLAPPROVALDECISION.C_LNITMGRP_LINEITEMS )) AND (( TOLAPPROVALGROUP.I = TOLAPPROVALDECISION.I_LNITMGRP_LINEITEMS )) )
+models/work_tables/po_header_fact_tw3.sql:34:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/work_tables/po_header_fact_tw4.sql:37:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/work_tables/po_header_fact_tw5.sql:83:{{ source('presentation','po_line_fact_tr1') }} PO_LINE_FACT_TR1) DEDUP_INPUT_SUBQUERY2 ) INGRP2
+models/work_tables/po_header_fact_tw5.sql:84:JOIN {{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP ON ( ( INGRP2.B_PO_HEADER_BK = TOLAPPROVALGROUP.REFERENCENUMB ) )
+models/work_tables/po_header_fact_tw9.sql:93:JOIN {{ source('timeseries_eos_finapp','taccpurchaseorderparty') }} TACCPURCHASEORDERPARTY ON ( (( PO_HEADER_FACT_TW5.PO_HEADER_C_NBK = TACCPURCHASEORDERPARTY.C_SERVICEORDE )) AND (( PO_HEADER_FACT_TW5.PO_HEADER_I_NBK = TACCPURCHASEORDERPARTY.I_SERVICEORDE )) )
+models/work_tables/po_header_fact_tw9.sql:102:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_tw9.sql:114:JOIN {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION_VENDOR ON ( (( INGRP1.VENDOR_C = TOCORGANISATION_VENDOR.C )) AND (( INGRP1.VENDOR_I = TOCORGANISATION_VENDOR.I )) )) LOOKUP_INPUT_SUBQUERY
+models/work_tables/po_header_fact_tw9.sql:122:{{ source('timeseries_mfp','facility') }} FACILITY
+models/work_tables/po_header_fact_tw9.sql:165:JOIN {{ source('timeseries_eos_finapp','taccpurchaseorderparty') }} TACCPURCHASEORDERPARTY ON ( (( PO_HEADER_FACT_TW5.PO_HEADER_C_NBK = TACCPURCHASEORDERPARTY.C_SERVICEORDE )) AND (( PO_HEADER_FACT_TW5.PO_HEADER_I_NBK = TACCPURCHASEORDERPARTY.I_SERVICEORDE )) )
+models/work_tables/po_header_fact_tw9.sql:174:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_tw9.sql:185:JOIN {{ source('timeseries_eos_finapp','tocorganisation') }} TOCORGANISATION_FACILITY ON ( (( INGRP1.FACILITY_C = TOCORGANISATION_FACILITY.C )) AND (( INGRP1.FACILITY_I = TOCORGANISATION_FACILITY.I )) )) LOOKUP_INPUT_SUBQUERY$3
+models/work_tables/po_header_fact_tw9.sql:231:JOIN {{ source('timeseries_eos_finapp','taccpurchaseorderparty') }} TACCPURCHASEORDERPARTY ON ( (( PO_HEADER_FACT_TW5.PO_HEADER_C_NBK = TACCPURCHASEORDERPARTY.C_SERVICEORDE )) AND (( PO_HEADER_FACT_TW5.PO_HEADER_I_NBK = TACCPURCHASEORDERPARTY.I_SERVICEORDE )) )
+models/work_tables/po_header_fact_tw9.sql:240:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_tw9.sql:251:JOIN {{ source('timeseries_eos_finapp','tocperson') }} TOCPERSON_PROVIDER ON ( (( INGRP1.PROVIDER_C = TOCPERSON_PROVIDER.C )) AND (( INGRP1.PROVIDER_I = TOCPERSON_PROVIDER.I )) )) LOOKUP_INPUT_SUBQUERY$6
+models/work_tables/po_header_fact_tw9.sql:282:JOIN {{ source('timeseries_eos_finapp','taccpurchaseorderparty') }} TACCPURCHASEORDERPARTY ON ( (( PO_HEADER_FACT_TW5.PO_HEADER_C_NBK = TACCPURCHASEORDERPARTY.C_SERVICEORDE )) AND (( PO_HEADER_FACT_TW5.PO_HEADER_I_NBK = TACCPURCHASEORDERPARTY.I_SERVICEORDE )) )
+models/work_tables/po_header_fact_tw9.sql:291:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_tw9.sql:371:JOIN {{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP ON ( (( PO_HEADER_FACT_TW5.PO_HEADER_C_NBK = TOLAPPROVALGROUP.C )) AND (( PO_HEADER_FACT_TW5.PO_HEADER_I_NBK = TOLAPPROVALGROUP.I )) )
+models/work_tables/po_header_fact_tw9.sql:376:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:192:JOIN {{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP ON ( (( PO_HEADER_FACT_TW9.PO_HEADER_C_NBK = TOLAPPROVALGROUP.C )) AND (( PO_HEADER_FACT_TW9.PO_HEADER_I_NBK = TOLAPPROVALGROUP.I )) )
+models/work_tables/po_header_fact_twa.sql:197:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:206:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:216:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:237:LEFT OUTER JOIN {{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION ON ( ( PO_HEADER_FACT_TW9.PO_HEADER_C_NBK = TOLAPPROVALDECISION.C_LNITMGRP_LINEITEMS AND PO_HEADER_FACT_TW9.PO_HEADER_I_NBK = TOLAPPROVALDECISION.I_LNITMGRP_LINEITEMS and (TO_TIMESTAMP(($P_PROCESS_DATE_CHR ),'DD-MON-YYYY') + INTERVAL '86399 SECOND, 999999 MICROSECOND' ) BETWEEN TOLAPPROVALDECISION.META__RECORD_EFFECTIVE_FROM AND TOLAPPROVALDECISION.META__RECORD_EFFECTIVE_TO ) )
+models/work_tables/po_header_fact_twa.sql:246:{{ source('timeseries_eos_finapp','tolservicedefinition') }} TOLSERVICEDEFINITION
+models/work_tables/po_header_fact_twa.sql:327:JOIN {{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP ON ( (( PO_HEADER_FACT_TW9.PO_HEADER_C_NBK = TOLAPPROVALGROUP.C )) AND (( PO_HEADER_FACT_TW9.PO_HEADER_I_NBK = TOLAPPROVALGROUP.I )) )
+models/work_tables/po_header_fact_twa.sql:332:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:341:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twa.sql:351:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_header_fact_twb.sql:75:{{ source('timeseries_eos_finapp','tolapprovalgroup') }} TOLAPPROVALGROUP
+models/work_tables/po_header_fact_twb.sql:76:JOIN {{ source('timeseries_eos_finapp','tolservicesholder') }} TOLSERVICESHOLDER ON ( ( TOLAPPROVALGROUP.C_SRVCLINK_APPROVALGROUP = TOLSERVICESHOLDER.C and TOLAPPROVALGROUP.I_SRVCLINK_APPROVALGROUP = TOLSERVICESHOLDER.I ) )
+models/work_tables/po_header_fact_twb.sql:94:{{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM
+models/work_tables/po_line_fact_tw1.sql:254:{{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION
+models/work_tables/po_line_fact_tw1.sql:262:{{ source('timeseries_eos_finapp','tolservicedefinition') }} TOLSERVICEDEFINITION
+models/work_tables/po_line_fact_tw1.sql:279:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_line_fact_tw1.sql:291:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_line_fact_tw1.sql:302:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_line_fact_tw1.sql:311:{{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE
+models/work_tables/po_line_fact_tw1.sql:318:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_line_fact_tw1.sql:327:{{ source('global','infact_ref_data_lookup_tg1') }} INFACT_REF_DATA_LOOKUP_TG1
+models/work_tables/po_line_fact_tw1.sql:338:{{ source('timeseries_eos_finapp','taccintervention') }} TACCINTERVENTION
+models/work_tables/po_line_fact_tw1.sql:357:{{ source('timeseries_eos_finapp','tollimit') }} TOLLIMIT
+models/work_tables/po_line_fact_tw2.sql:555:JOIN {{ source('timeseries_eos_finapp','tolapprovaldecision') }} TOLAPPROVALDECISION ON ( ( PO_LINE_FACT_TW1.PO_LINE_NBK = TOLAPPROVALDECISION.EXTEXTERNALENTITYID ) )
+models/work_tables/po_line_fact_tw2.sql:556:JOIN {{ source('timeseries_eos_finapp','todomaininstance') }} TODOMAININSTANCE ON ( ( TOLAPPROVALDECISION.DECISIONSTATU = TODOMAININSTANCE.I ) )
+models/work_tables/service_line_payment_tw1.sql:44:					FROM {{ source('timeseries_mfp', 'schedule_line') }} SCHEDULE_LINE
+models/work_tables/service_line_payment_tw1.sql:49:						FROM {{ source('timeseries_mfp', 'schedule_header') }} SCHEDULE_HEADER
+models/work_tables/service_line_payment_tw1.sql:79:					FROM {{ source('timeseries_mfp', 'service_line') }} SERVICE_LINE
+models/work_tables/service_line_payment_tw1.sql:84:						FROM {{ source('timeseries_mfp', 'service_approval_line') }} SERVICE_APPROVAL_LINE
+models/work_tables/service_line_payment_tw1.sql:94:						FROM {{ source('timeseries_mfp', 'gl_journal_control') }} GL_JOURNAL_CONTROL
+models/work_tables/service_line_payment_tw1.sql:104:						FROM {{ source('timeseries_mfp', 'schedule_deduction') }} SCHEDULE_DEDUCTION
+models/work_tables/service_line_payment_tw1.sql:134:					FROM {{ source('timeseries_mfp', 'schedule_line_payment') }} SCHEDULE_LINE_PAYMENT
+models/work_tables/service_line_payment_tw1.sql:139:						FROM {{ source('timeseries_mfp', 'payment') }} PAYMENT
+models/work_tables/service_line_payment_tw1.sql:149:						FROM {{ source('timeseries_mfp', 'payment_detail') }} PAYMENT_DETAIL
+models/work_tables/service_line_payment_tw2.sql:73:    JOIN {{ source('timeseries_mfp','service_line') }} SERVICE_LINE_1 
+models/work_tables/service_line_payment_tw2.sql:106:                            JOIN {{ source('timeseries_mfp','service_line') }} SERVICE_LINE_2 
+models/work_tables/service_line_payment_tw2.sql:109:                            JOIN {{ source('timeseries_mfp','gl_journal_control') }} GL_JOURNAL_CONTROL_1 
+models/work_tables/service_line_payment_tw2.sql:119:                                                {{ source('timeseries_mfp','gl_journal_control') }} GL_JOURNAL_CONTROL_2
+models/work_tables/service_line_payment_tw2.sql:142:                            {{ source('timeseries_mfp','schedule_deduction') }} SCHEDULE_DEDUCTION
+models/work_tables/service_line_payment_tw2.sql:149:    LEFT OUTER JOIN {{ source('timeseries_mfp','master_item') }} MASTER_ITEM ON ( (( SERVICE_LINE_PAYMENT_TW1_1.ADM_RUN_DAY_DTS between MASTER_ITEM.META__RECORD_EFFECTIVE_FROM AND MASTER_ITEM.META__RECORD_EFFECTIVE_TO )) AND (( MASTER_ITEM.MASTER_ITEM_ID = SERVICE_LINE_1.MASTER_ITEM_ID )) )
+models/work_tables/service_line_payment_tw2.sql:150:    LEFT OUTER JOIN {{ source('timeseries_mfp','master_item') }} MASTER_ITEM_1 ON ( (( SERVICE_LINE_PAYMENT_TW1_1.ADM_RUN_DAY_DTS between MASTER_ITEM_1.META__RECORD_EFFECTIVE_FROM AND MASTER_ITEM_1.META__RECORD_EFFECTIVE_TO )) AND (( MASTER_ITEM_1.MASTER_ITEM_CODE = SERVICE_LINE_1.SERVICE_ITEM_CODE )) )
+models/work_tables/service_line_payment_tw2.sql:159:                        {{ source('timeseries_mfp','service_approval_line') }} SERVICE_APPROVAL_LINE
+models/work_tables/service_line_payment_tw3.sql:69:{{ source('timeseries_mfp','schedule_line_payment') }} SCHEDULE_LINE_PAYMENT
+models/work_tables/service_line_payment_tw3.sql:73:JOIN {{ source('timeseries_mfp','payment') }} PAYMENT 
+models/work_tables/service_line_payment_tw3.sql:76:LEFT OUTER JOIN {{ source('timeseries_mfp','payment_detail') }} PAYMENT_DETAIL 
+models/work_tables/service_line_payment_tw3.sql:79:LEFT OUTER JOIN {{ source('presentation','schedule_line_pymt_dup_te1') }} SCHEDULE_LINE_PYMT_DUP_TE1 
+models/work_tables/service_line_rev_adj_tw1.sql:109:        JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE_REV 
+models/work_tables/service_line_rev_adj_tw1.sql:123:                FROM     {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE
+models/work_tables/service_line_rev_adj_tw1.sql:130:        LEFT OUTER JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER_REV 
+models/work_tables/service_line_rev_adj_tw1.sql:133:        LEFT OUTER JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER 
+models/work_tables/service_line_rev_adj_tw2.sql:41:		       from {{ source('timeseries_mfp', 'service_line') }})  SERVICE_LINE
+models/work_tables/service_line_rev_adj_tw3.sql:32:JOIN {{ source('timeseries_mfp', 'service_line' ) }} SERVICE_LINE
+models/work_tables/service_line_rev_adj_tw4.sql:77:                                FROM  {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE_2
+models/work_tables/service_line_rev_adj_tw4.sql:90:                                FROM {{ source('presentation','service_line_rev_adj_te1') }} SERVICE_LINE_REV_ADJ_TE1_1
+models/work_tables/service_line_rev_adj_tw4.sql:92:                                JOIN {{ source('timeseries_mfp','schedule_line') }} SCHEDULE_LINE_2 
+models/work_tables/service_line_rev_adj_tw4.sql:101:                    JOIN {{ source('timeseries_mfp','schedule_header') }} SCHEDULE_HEADER 
+models/work_tables/service_line_rev_adj_tw4.sql:112:                        FROM {{ source('presentation','service_line_rev_adj_te1') }}  SERVICE_LINE_REV_ADJ_TE1_1
+models/work_tables/ti_claim_tw1.sql:28:{{ source('timeseries_eos_finapp','taccclaimtreatmentdetails') }} TACCCLAIMTREATMENTDETAILS
+models/work_tables/ti_claim_tw1.sql:29:JOIN {{ source('timeseries_eos_finapp','tolclaim') }} TOLCLAIM ON ( (( TACCCLAIMTREATMENTDETAILS.C_OLCLAIM = TOLCLAIM.C )) AND (( TACCCLAIMTREATMENTDETAILS.I_OLCLAIM = TOLCLAIM.I )) )
+models/work_tables/ti_claim_tw1.sql:30:JOIN {{ source('timeseries_eos_finapp','toccase') }} TOCCASE ON ( (( TOLCLAIM.C_OCCASE_CLAIMCASE = TOCCASE.C )) AND (( TOLCLAIM.I_OCCASE_CLAIMCASE = TOCCASE.I )) )
+models/work_tables/ti_claim_tw1.sql:31:JOIN {{ source('timeseries_eos_finapp','tacctreatmentcoverorreas') }} TACCTREATMENTCOVERORREAS ON ( (( TACCCLAIMTREATMENTDETAILS.I_TRTCOV_TREATMENTCOVE = TACCTREATMENTCOVERORREAS.I )) AND (( TACCCLAIMTREATMENTDETAILS.C_TRTCOV_TREATMENTCOVE = TACCTREATMENTCOVERORREAS.C )) )
+models/work_tables/ti_claims_relink_tw1.sql:62:{{ source('edw','ti_static_medmis_claims_ts1')}} TI_STATIC_MEDMIS_CLAIMS_TS1) LOOKUP_INPUT_SUBQUERY$1
+models/work_tables/ti_claims_relink_tw1.sql:83:{{ source('edw','ti_static_treat_inj_patsaf_ts1') }} TI_STATIC_TREAT_INJ_PATSAF_TS1) LOOKUP_INPUT_SUBQUERY$3
+models/work_tables/ti_claims_relink_tw1.sql:93:{{ source('timeseries_eos_finapp','toccasealias') }} TOCCASEALIAS
+models/work_tables/ti_claims_relink_tw1.sql:103:{{ source('timeseries_eos_finapp','toccase') }} TOCCASE
